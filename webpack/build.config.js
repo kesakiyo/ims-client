@@ -4,6 +4,7 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: path.resolve(__dirname, '..', 'src', 'main.js'),
+  target: 'web',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '..', 'build'),
@@ -78,22 +79,18 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('style.css'),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      'process.env.version': JSON.stringify(require('../package.json').version),
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env.version': JSON.stringify(require("../package.json").version),
     }),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ko|en|ja/),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+    }),
   ],
-  devtool: 'eval',
-  devServer: {
-    contentBase: path.resolve(__dirname, '..', 'build'),
-    compress: true,
-    port: 4001,
-    disableHostCheck: true,
-    host: '0.0.0.0',
-  },
   node: {
     net: 'empty',
     dns: 'empty',
-    fs: 'empty',
+    fs: 'empty'
   }
 }

@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# build file
+build
+!build/index.html
+
+.DS_Store
