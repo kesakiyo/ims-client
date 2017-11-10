@@ -22,10 +22,23 @@
   "homepage": "https://github.com/kesakiyo/ims-client#readme",
   "dependencies": {
     "compression": "^1.7.1",
+    "core-decorators": "^0.20.0",
     "express": "^4.16.2",
     "express-useragent": "^1.0.8",
+    "history": "^1.17.0",
+    "immutable": "^3.8.2",
+    "keymirror": "^0.1.1",
     "react": "^15.6.2",
-    "react-dom": "^15.6.2"
+    "react-dom": "^15.6.2",
+    "react-redux": "^5.0.6",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.2",
+    "redux-form": "^7.1.2",
+    "redux-observable": "^0.17.0",
+    "rxjs": "^5.5.2",
+    "uuid": "^3.1.0",
+    "zoyi-simple-fetch": "^0.1.19"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
