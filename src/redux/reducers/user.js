@@ -6,7 +6,6 @@ const initState = {
 };
 
 export default (state = initState, action) => {
-  const { todoList } = state
 
   switch (action.type) {
     case AT.REQUEST_SIGN_IN_SUCCESS:

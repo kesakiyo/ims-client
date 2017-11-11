@@ -54,7 +54,7 @@ class Boards extends React.Component {
   renderBody() {
     return (
       <div className={styles.body}>
-        <Link to="/boards/1" className={styles.item}>
+        <Link to="/boards/5" className={styles.item}>
           <img
             src={require('../../styles/images/developer.png')}
             className={styles.image} />
@@ -62,7 +62,7 @@ class Boards extends React.Component {
             개발자 지원하기
           </div>
         </Link>
-        <Link to="/boards/2" className={styles.item}>
+        <Link to="/boards/6" className={styles.item}>
           <img
             src={require('../../styles/images/designer.png')}
             className={styles.image} />

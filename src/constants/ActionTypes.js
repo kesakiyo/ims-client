@@ -14,4 +14,5 @@ export default {
   ...makeProps('REQUEST_SIGN_UP'),
   ...makeProps('REQUEST_SIGN_OUT'),
   ...makeProps('REQUEST_GET_ME'),
+  ...makeProps('REQUEST_JOIN_BOARD'),
 };
