@@ -8,6 +8,6 @@ client.setDefaultHeader({
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 })
-// client.credentials = 'include'
+client.credentials = 'include'
 
 export default client;

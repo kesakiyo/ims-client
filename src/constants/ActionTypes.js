@@ -9,8 +9,9 @@ const makeProps = (type) => {
   })
 };
 
-export default keyMirror({
+export default {
   ...makeProps('REQUEST_SIGN_IN'),
   ...makeProps('REQUEST_SIGN_UP'),
+  ...makeProps('REQUEST_SIGN_OUT'),
   ...makeProps('REQUEST_GET_ME'),
-});
+};

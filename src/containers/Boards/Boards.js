@@ -1,9 +1,11 @@
 /* External dependencies */
 import React from 'react';
 import { connect } from 'react-redux';
+import autobind from 'core-decorators/lib/autobind';
 
 /* Internal dependencies */
 import styles from './styles.scss';
+import userActions from '../../redux/actions/user';
 import userSelector from '../../redux/selectors/user';
 import Link from '../../elements/Link';
 
@@ -14,6 +16,11 @@ const mapStateToProps = (state) => ({
 
 @connect(mapStateToProps)
 class Boards extends React.Component {
+
+  @autobind
+  handleSignOut() {
+    this.props.dispatch(userActions.signOut());
+  }
 
   renderHeader() {
     if (!this.props.user) {
@@ -33,8 +40,13 @@ class Boards extends React.Component {
       )
     }
     return (
-      <div className={styles.header}>
-        {`안녕하세요. ${this.props.user.email}님`}
+      <div className={styles.greeting}>
+        <div className={styles.text}>
+          {`안녕하세요. ${this.props.user.email}님`}
+        </div>
+        <div onClick={this.handleSignOut} className={styles.signout}>
+          로그아웃
+        </div>
       </div>
     )
   }
