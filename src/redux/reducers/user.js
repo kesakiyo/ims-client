@@ -10,10 +10,11 @@ export default (state = initState, action) => {
 
   switch (action.type) {
     case AT.REQUEST_SIGN_IN_SUCCESS:
+    case AT.REQUEST_SIGN_UP_SUCCESS:
     case AT.REQUEST_GET_ME_SUCCESS:
-      console.log(action);
       return {
-
+        ...state,
+        user: action.payload.user,
       }
 
     default:

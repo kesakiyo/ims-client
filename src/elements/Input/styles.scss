@@ -11,12 +11,14 @@
 
   .input {
     width: 100%;
-    height: 35px;
+    height: 40px;
     border: 2px solid $silver;
     border-radius: 3px;
     padding-left: 7px;
     box-shadow: none;
     outline: none;
+    font-size: 15px;
+    color: $black;
 
     &:not(.error):focus {
       border: 2px solid $sky;
