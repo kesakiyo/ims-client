@@ -1,0 +1,6 @@
+{
+  "name": "Boards",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Boards.js"
+}

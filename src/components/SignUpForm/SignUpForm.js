@@ -3,6 +3,8 @@ import React from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import autobind from 'core-decorators/lib/autobind';
 import selectn from 'selectn';
+import { push } from 'react-router-redux';
+import PropTypes from 'prop-types';
 
 /* Internal dependencies */
 import styles from './styles.scss';
@@ -69,7 +71,7 @@ class SignUpForm extends React.Component {
     return dispatch(userActions.signUp(user))
       .promise
       .then((action) => {
-        // TODO: Redirect to another page...
+        this.props.onRedirect('/boards');
       })
       .catch((action) => {
         const errors = selectn('payload.body.errors', action);
@@ -99,6 +101,14 @@ class SignUpForm extends React.Component {
       </form>
     )
   }
+}
+
+SignUpForm.propTypes = {
+  onRedirect: PropTypes.func,
+}
+
+SignUpForm.defaultProps = {
+  onRedirect: () => {},
 }
 
 export default SignUpForm;
