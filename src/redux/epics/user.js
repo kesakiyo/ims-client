@@ -40,7 +40,43 @@ const signUpEpic = action$ => (
     )
 );
 
+const signOutEpic = action$ => (
+  action$.ofType(AT.REQUEST_SIGN_OUT)
+    .switchMap(action =>
+      Rx.Observable.fromPromise(userAPI.signOut())
+        .map(payload => ({
+          uuid: action.uuid,
+          type: AT.REQUEST_SIGN_OUT_SUCCESS,
+          payload,
+        }))
+        .catch(payload => Rx.Observable.of({
+          uuid: action.uuid,
+          type: AT.REQUEST_SIGN_OUT_ERROR,
+          payload,
+        }))
+    )
+);
+
+const getMeEpic = action$ => (
+  action$.ofType(AT.REQUEST_GET_ME)
+    .switchMap(action =>
+      Rx.Observable.fromPromise(userAPI.getMe())
+        .map(payload => ({
+          uuid: action.uuid,
+          type: AT.REQUEST_GET_ME_SUCCESS,
+          payload,
+        }))
+        .catch(payload => Rx.Observable.of({
+          uuid: action.uuid,
+          type: AT.REQUEST_GET_ME_ERROR,
+          payload,
+        }))
+    )
+);
+
 export default combineEpics(
   signInEpic,
-  signUpEpic
+  signUpEpic,
+  signOutEpic,
+  getMeEpic
 );

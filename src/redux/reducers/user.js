@@ -17,6 +17,12 @@ export default (state = initState, action) => {
         user: action.payload.user,
       }
 
+    case AT.REQUEST_SIGN_OUT_SUCCESS:
+    return {
+      ...state,
+      user: null,
+    }
+
     default:
       return state
   }
