@@ -11,5 +11,6 @@ const makeProps = (type) => {
 
 export default keyMirror({
   ...makeProps('REQUEST_SIGN_IN'),
+  ...makeProps('REQUEST_SIGN_UP'),
   ...makeProps('REQUEST_GET_ME'),
 });

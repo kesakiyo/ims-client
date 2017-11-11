@@ -3,16 +3,16 @@ import React from 'react';
 
 /* Intern dependnecies */
 import styles from './styles.scss';
-import SignInForm from '../../components/SignInForm';
+import SignUpForm from '../../components/SignUpForm';
 
-class SignIn extends React.Component {
+class SignUp extends React.Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <SignInForm />
+        <SignUpForm />
       </div>
     )
   }
 }
 
-export default SignIn;
+export default SignUp;

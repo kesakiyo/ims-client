@@ -6,7 +6,7 @@ import { combineEpics } from 'redux-observable';
 import AT from '../../constants/ActionTypes';
 import userAPI from '../../apis/user';
 
-const getUserEpic = action$ => (
+const signInEpic = action$ => (
   action$.ofType(AT.REQUEST_SIGN_IN)
     .switchMap(action =>
       Rx.Observable.fromPromise(userAPI.signIn(action.payload.email, action.payload.password))
@@ -23,6 +23,24 @@ const getUserEpic = action$ => (
     )
 );
 
+const signUpEpic = action$ => (
+  action$.ofType(AT.REQUEST_SIGN_UP)
+    .switchMap(action =>
+      Rx.Observable.fromPromise(userAPI.signUp(action.payload.email, action.payload.password, action.payload.passwordConfirm))
+        .map(payload => ({
+          uuid: action.uuid,
+          type: AT.REQUEST_SIGN_UP_SUCCESS,
+          payload,
+        }))
+        .catch(payload => Rx.Observable.of({
+          uuid: action.uuid,
+          type: AT.REQUEST_SIGN_UP_ERROR,
+          payload,
+        }))
+    )
+);
+
 export default combineEpics(
-  getUserEpic
+  signInEpic,
+  signUpEpic
 );
