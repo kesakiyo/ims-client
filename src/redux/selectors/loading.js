@@ -7,6 +7,12 @@ const Board = createSelector(
   (...args) => args.reduce((prev, cur) => prev || cur, false)
 )
 
+const App = createSelector(
+  state => state.user.isFetching,
+  (...args) => args.reduce((prev, cur) => prev || cur, false)
+)
+
 export default {
+  App,
   Board,
 }

@@ -1,6 +1,5 @@
 /* External dependencies */
 import React from 'react';
-import { withRouter } from 'react-router';
 import { Router, Route, IndexRedirect } from 'react-router';
 
 /* Internal dependencies */
@@ -16,10 +15,15 @@ export default (
   <Router history={redux.getHistory()}>
     <Route path="/" component={App}>
       <IndexRedirect to="boards" />
-      <Route path="boards" component={Boards} />
-      <Route path="boards/:id" component={withRouter(withAuth.userIsAuthenticated(Board))} />
       <Route path="signin" component={SignIn} />
       <Route path="signup" component={SignUp} />
+      <Route component={withAuth.Authenticated}>
+        <Route path="boards" component={Boards} />
+        <Route path="boards/:id" component={Board}>
+          <Route path="session" component={SignIn} />
+          <Route path="questions" component={SignIn} />
+        </Route>
+      </Route>
     </Route>
   </Router>
 );
