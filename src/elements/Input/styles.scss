@@ -1,0 +1,30 @@
+@import '../../styles/colors.scss';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+
+  &.error {
+    color: $red;
+  }
+
+  .input {
+    width: 100%;
+    height: 35px;
+    border: 2px solid $silver;
+    border-radius: 3px;
+    padding-left: 7px;
+    box-shadow: none;
+    outline: none;
+
+    &:not(.error):focus {
+      border: 2px solid $sky;
+    }
+
+    &.error {
+      margin-bottom: 5px;
+      border: 2px solid $red;
+    }
+  }
+}

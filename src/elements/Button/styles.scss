@@ -1,0 +1,19 @@
+@import '../../styles/colors.scss';
+
+.button {
+  padding: 0 30px;
+  height: 35px;
+  font-size: 18px;
+  box-shadow: none;
+  outline: none;
+  background-color: $blue;
+  border: 2px solid $blue;
+  border-radius: 3px;
+  color: $white;
+
+  &:hover, &:active, &:hover:active {
+    background-color: $blue-hover;
+    border: 2px solid $blue-hover;
+    cursor: pointer;
+  }
+}

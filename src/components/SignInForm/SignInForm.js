@@ -1,10 +1,15 @@
 /* External dependencies */
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, SubmissionError } from 'redux-form';
 import autobind from 'core-decorators/lib/autobind';
+import selectn from 'selectn';
 
 /* Internal dependencies */
+import styles from './styles.scss';
+import Input from '../../elements/Input';
+import Button from '../../elements/Button';
 import userActions from '../../redux/actions/user';
+import * as errorParser from '../../utils/errorParser';
 
 @reduxForm({
   form: 'signIn',
@@ -16,44 +21,58 @@ import userActions from '../../redux/actions/user';
 class SignInForm extends React.Component {
 
   @autobind
-  renderNameField(fields) {
-    const { input, meta } = fields
+  renderEmailField(fields) {
+    const { input, meta } = fields;
     return (
-      <input onChange={input.onChange} />
-    )
+      <Input
+        placeholder="이메일"
+        autoFocus
+        hasError={meta.invalid}
+        onChange={input.onChange}>
+        {meta.error}
+      </Input>
+    );
   }
 
   @autobind
   renderPasswordField(fields) {
-    const { input, meta } = fields
+    const { input, meta } = fields;
     return (
-      <input onChange={input.onChange} />
-    )
+      <Input
+        type="password"
+        placeholder="패스워드"
+        hasError={meta.invalid}
+        onChange={input.onChange}>
+        {meta.error}
+      </Input>
+    );
   }
 
   @autobind
   handleSubmit(user, dispatch) {
-    dispatch(userActions.signIn(user))
+    return dispatch(userActions.signIn(user))
       .promise
-      .then((user) => {
-        console.log('hello user');
-        console.log(user);
+      .then((action) => {
+        // TODO: Redirect to another page...
       })
-      .catch((err) => {
-        console.log('hello error');
-        console.log(err);
+      .catch((action) => {
+        const errors = selectn('payload.body.errors', action);
+        throw new SubmissionError(errorParser.formError(errors).toJS());
       });
   }
 
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit(this.handleSubmit)}>
-        <Field name="email" component={this.renderNameField} />
-        <Field name="password" component={this.renderPasswordField} />
-        <button type="submit">
+      <form className={styles.wrapper} onSubmit={handleSubmit(this.handleSubmit)}>
+        <div className={styles.header}>
           로그인
-        </button>
+        </div>
+        <Field name="email" component={this.renderEmailField} />
+        <Field name="password" component={this.renderPasswordField} />
+        <Button className={styles.button} type="submit">
+          로그인
+        </Button>
       </form>
     )
   }
