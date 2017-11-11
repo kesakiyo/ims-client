@@ -12,6 +12,7 @@ import SignUp from './containers/SignUp';
 export default (
   <Router history={redux.getHistory()}>
     <Route path="/" component={App}>
+      <IndexRedirect to="boards" />
       <Route path="boards" component={Boards} />
       <Route path="signin" component={SignIn} />
       <Route path="signup" component={SignUp} />
