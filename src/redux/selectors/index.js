@@ -1,10 +1,12 @@
 /* Internal dependencies */
-import user from './user';
 import board from './board';
+import user from './user';
 import session from './session';
+import loading from './loading';
 
 export default {
-  user,
   board,
+  user,
   session,
+  loading,
 }
