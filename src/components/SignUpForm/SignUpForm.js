@@ -92,10 +92,15 @@ class SignUpForm extends React.Component {
         <Button className={styles.button} type="submit">
           회원가입
         </Button>
-        <div className={styles.signup}>
-          이미 아이디가 있나요?
-          <Link to="/signin" className={styles.link}>
-            로그인
+        <div className={styles.footer}>
+          <div className={styles.signup}>
+            이미 아이디가 있나요?
+            <Link to="/signin" className={styles.link}>
+              로그인
+            </Link>
+          </div>
+          <Link to="/">
+            메인으로
           </Link>
         </div>
       </form>

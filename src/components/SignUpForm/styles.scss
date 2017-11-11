@@ -14,13 +14,18 @@
     width: 100%;
   }
 
-  .signup {
+  .footer {
     margin-top: 15px;
-    color: $gray;
+    display: flex;
     font-weight: 600;
 
-    .link {
-      margin-left: 7px;
+    .signup {
+      flex: 1 1 0;
+      color: $gray;
+
+      .link {
+        margin-left: 7px;
+      }
     }
   }
 }
