@@ -8,6 +8,7 @@ import selectn from 'selectn';
 import styles from './styles.scss';
 import Input from '../../elements/Input';
 import Button from '../../elements/Button';
+import Link from '../../elements/Link';
 import userActions from '../../redux/actions/user';
 import * as errorParser from '../../utils/errorParser';
 
@@ -73,6 +74,12 @@ class SignInForm extends React.Component {
         <Button className={styles.button} type="submit">
           로그인
         </Button>
+        <div className={styles.signup}>
+          아직 회원이 아닌가요?
+          <Link to="/signup" className={styles.link}>
+            회원가입
+          </Link>
+        </div>
       </form>
     )
   }
