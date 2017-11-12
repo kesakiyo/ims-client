@@ -89,7 +89,10 @@ class SignInForm extends React.Component {
   renderSubmitButton() {
     if (this.props.dirty) {
       return (
-        <Button className={styles.button} type="submit">
+        <Button
+          loading={this.props.submitting}
+          className={styles.button}
+          type="submit">
           저장
         </Button>
       )

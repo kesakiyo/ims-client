@@ -89,7 +89,10 @@ class SignUpForm extends React.Component {
         <Field name="email" component={this.renderEmailField} />
         <Field name="password" component={this.renderPasswordField} />
         <Field name="passwordConfirm" component={this.renderPasswordConfirmField} />
-        <Button className={styles.button} type="submit">
+        <Button
+          loading={this.props.submitting}
+          className={styles.button}
+          type="submit">
           회원가입
         </Button>
         <div className={styles.footer}>
