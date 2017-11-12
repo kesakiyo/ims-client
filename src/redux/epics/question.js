@@ -40,7 +40,26 @@ const upsertAnswerEpic = action$ => (
     )
 );
 
+const uploadFileEpic = action$ => (
+  action$.ofType(AT.REQUEST_UPLOAD_FILE)
+    .switchMap(action => {
+      const { id, answerId, blob } = action.payload
+      return Rx.Observable.fromPromise(questionAPI.uploadFile(id, answerId, blob))
+        .map(payload => ({
+          uuid: action.uuid,
+          type: AT.REQUEST_UPLOAD_FILE_SUCCESS,
+          payload,
+        }))
+        .catch(payload => Rx.Observable.of({
+          uuid: action.uuid,
+          type: AT.REQUEST_UPLOAD_FILE_ERROR,
+          payload,
+        }))
+    })
+);
+
 export default combineEpics(
   getListEpic,
   upsertAnswerEpic,
+  uploadFileEpic
 );

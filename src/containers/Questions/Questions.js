@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import selectn from 'selectn';
+import autobind from 'core-decorators/lib/autobind';
 
 /* Internal dependencies */
 import styles from './styles.scss';
@@ -9,6 +10,8 @@ import questionActions from '../../redux/actions/question';
 import selectors from '../../redux/selectors';
 import withPreloader from '../../decorators/withPreloader';
 import QuestionForm from '../../components/QuestionForm';
+import FileUploadForm from '../../components/FileUploadForm';
+import QuestionTypes from '../../constants/QuestionTypes';
 
 const initializer = (prevProps, props, dispatch) => {
   const prevId = selectn('params.id', prevProps);
@@ -34,6 +37,32 @@ const mapStateToProps = (state) => ({
 @connect(mapStateToProps)
 class Questions extends React.Component {
 
+  @autobind
+  renderQuestion(question, index) {
+    switch (question.type) {
+      case QuestionTypes.FILE:
+        return (
+          <FileUploadForm
+            index={index}
+            key={question.id}
+            question={question} />
+        )
+
+      case QuestionTypes.TEXT:
+        return (
+          <QuestionForm
+            autoFocus={index === 0}
+            index={index}
+            key={question.id}
+            form={`question-${question.id}`}
+            question={question} />
+        )
+
+      default:
+        return null;
+    }
+  }
+
   render() {
     return (
       <div className={styles.wrapper}>
@@ -41,16 +70,7 @@ class Questions extends React.Component {
           {this.props.board.title}
         </div>
         <div className={styles.body}>
-          {
-            this.props.questions.map((question, index) => (
-              <QuestionForm
-                autoFocus={index === 0}
-                index={index}
-                key={question.id}
-                form={`question-${question.id}`}
-                question={question} />
-            ))
-          }
+          {this.props.questions.map(this.renderQuestion)}
         </div>
       </div>
     )

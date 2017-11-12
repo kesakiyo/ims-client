@@ -5,4 +5,5 @@ import AT from '../../constants/ActionTypes';
 export default {
   getList: actionCreator(AT.REQUEST_GET_QUESTIONS),
   upsertAnswer: actionCreatorWithPromise(AT.REQUEST_UPSERT_ANSWER),
+  uploadFile: actionCreatorWithPromise(AT.REQUEST_UPLOAD_FILE),
 }
