@@ -11,6 +11,7 @@ import Board from './containers/Board';
 import SignIn from './containers/SignIn';
 import SignUp from './containers/SignUp';
 import Session from './containers/Session';
+import Questions from './containers/Questions';
 
 export default (
   <Router history={redux.getHistory()}>
@@ -23,7 +24,7 @@ export default (
         <Route path="boards/:id" component={Board}>
           <IndexRedirect to="session" />
           <Route path="session" component={Session} />
-          <Route path="questions" component={SignIn} />
+          <Route path="questions" component={Questions} />
         </Route>
       </Route>
     </Route>
