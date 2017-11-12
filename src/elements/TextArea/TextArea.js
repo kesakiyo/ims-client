@@ -6,7 +6,7 @@ import classNames from 'classnames';
 /* Internal dependnecies */
 import styles from './styles.scss';
 
-class Input extends React.Component {
+class TextArea extends React.Component {
   constructor() {
     super();
     this._refs = {};
@@ -24,7 +24,7 @@ class Input extends React.Component {
     const { children, className, autoFocus, hasError, ...props } = this.props
     return (
       <div className={classNames(styles.wrapper, { [styles.error]: this.props.hasError }, className)}>
-        <input
+        <textarea
           ref={(e) => this._refs.input = e}
           className={classNames(styles.input, { [styles.error]: this.props.hasError })}
           {...props} />
@@ -34,7 +34,7 @@ class Input extends React.Component {
   }
 }
 
-Input.propTypes = {
+TextArea.propTypes = {
   onChange: PropTypes.func,
   hasError: PropTypes.bool,
   autoFocus: PropTypes.bool,
@@ -43,10 +43,10 @@ Input.propTypes = {
   value: PropTypes.string,
 }
 
-Input.defaultProps = {
+TextArea.defaultProps = {
   onChange: () => {},
   hasError: false,
   autoFocus: false,
 }
 
-export default Input;
+export default TextArea;

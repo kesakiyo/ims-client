@@ -30,17 +30,18 @@ class SignInForm extends React.Component {
     const { input, meta } = fields;
     return (
       <div className={styles.row}>
-        <div className={styles.label}>
-          이메일
-        </div>
         <Input
           placeholder="이메일"
           autoFocus
+          className={styles.input}
           value={input.value}
           hasError={meta.invalid}
           onChange={input.onChange}>
           {meta.error}
         </Input>
+        <div className={styles.description}>
+          지원 결과 및 공지사항을 받을 이메일 주소입니다.
+        </div>
       </div>
     );
   }
@@ -50,16 +51,17 @@ class SignInForm extends React.Component {
     const { input, meta } = fields;
     return (
       <div className={styles.row}>
-        <div className={styles.label}>
-          연락처
-        </div>
         <Input
           placeholder="핸드폰 번호"
+          className={styles.input}
           value={input.value}
           hasError={meta.invalid}
           onChange={input.onChange}>
           {meta.error}
         </Input>
+        <div className={styles.description}>
+          연락 가능한 핸드폰 번호 입니다.
+        </div>
       </div>
     );
   }

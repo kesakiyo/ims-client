@@ -9,8 +9,23 @@ body {
   margin: 0;
   font-size: 14px;
   color: $black;
+
+  font-family: 'Avenir', 'Apple SD Gothic Neo', 'Nanum Barun Gothic', 'Helvetica', 'Arial', 'Malgun Gothic', '\B9D1\C740\ACE0\B515', 돋움, Dotum, 'Noto Sans Japanese', 'Hiragino Kaku Gothic ProN', '\30D2\30E9\30AE\30CE\89D2\30B4 ProN W3', メイリオ, sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $silver;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $silver;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: $silver;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: $silver;
 }
