@@ -23,22 +23,6 @@ class Boards extends React.Component {
   }
 
   renderHeader() {
-    if (!this.props.user) {
-      return (
-        <div className={styles.header}>
-          <div className={styles.title}>로그인이 필요한 서비스입니다.</div>
-          <div className={styles.description}>
-            <Link to="/signin" className={styles.link}>
-              로그인
-            </Link>
-            또는
-            <Link to="/signup" className={styles.link}>
-              회원가입
-            </Link>
-          </div>
-        </div>
-      )
-    }
     return (
       <div className={styles.greeting}>
         <div className={styles.text}>
