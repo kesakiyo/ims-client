@@ -83,9 +83,6 @@ class SignInForm extends React.Component {
               회원가입
             </Link>
           </div>
-          <Link to="/">
-            메인으로
-          </Link>
         </div>
       </form>
     )

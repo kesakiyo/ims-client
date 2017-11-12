@@ -99,9 +99,6 @@ class SignUpForm extends React.Component {
               로그인
             </Link>
           </div>
-          <Link to="/">
-            메인으로
-          </Link>
         </div>
       </form>
     )
