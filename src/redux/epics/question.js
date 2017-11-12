@@ -23,6 +23,24 @@ const getListEpic = action$ => (
     )
 );
 
+const upsertAnswerEpic = action$ => (
+  action$.ofType(AT.REQUEST_UPSERT_ANSWER)
+    .switchMap(action =>
+      Rx.Observable.fromPromise(questionAPI.upsertAnswer(action.payload.id, action.payload.answer))
+        .map(payload => ({
+          uuid: action.uuid,
+          type: AT.REQUEST_UPSERT_ANSWER_SUCCESS,
+          payload,
+        }))
+        .catch(payload => Rx.Observable.of({
+          uuid: action.uuid,
+          type: AT.REQUEST_UPSERT_ANSWER_ERROR,
+          payload,
+        }))
+    )
+);
+
 export default combineEpics(
   getListEpic,
+  upsertAnswerEpic,
 );
