@@ -9,20 +9,20 @@ const initState = {
 export default (state = initState, action) => {
 
   switch (action.type) {
-    case AT.REQUEST_GET_ANSWERS:
+    case AT.REQUEST_GET_QUESTIONS:
       return {
         ...state,
         isFetching: true,
       }
 
-    case AT.REQUEST_GET_ANSWERS_SUCCESS:
+    case AT.REQUEST_GET_QUESTIONS_SUCCESS:
       return {
         ...state,
         isFetching: false,
         answers: action.payload.answers,
       }
 
-    case AT.REQUEST_GET_ANSWERS_ERROR:
+    case AT.REQUEST_GET_QUESTIONS_ERROR:
       return {
         ...state,
         isFetching: false,

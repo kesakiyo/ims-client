@@ -22,7 +22,7 @@ class QuestionForm extends React.Component {
 
   componentWillMount() {
     this.props.initialize({
-      text: this.props.question.text || '',
+      text: this.props.question.answer.text || '',
     });
   }
 
@@ -59,7 +59,9 @@ class QuestionForm extends React.Component {
       return dispatch(questionActions.upsertAnswer(payload))
         .promise
         .then((action) => {
-
+          this.props.initialize({
+            text: action.payload.answer.text,
+          })
         })
         .catch((action) => {
           const errors = selectn('payload.body.errors', action);

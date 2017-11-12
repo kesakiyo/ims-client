@@ -24,7 +24,7 @@ const initializer = (prevProps, props, dispatch) => {
 
 const mapStateToProps = (state) => ({
   board: selectors.board.getBoard(state),
-  questions: selectors.questions.getQuestions(state),
+  questions: selectors.questions.getFetchedQuestions(state),
 })
 
 @withPreloader({

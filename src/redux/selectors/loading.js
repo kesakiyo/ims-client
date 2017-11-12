@@ -14,6 +14,7 @@ const App = createSelector(
 
 const Questions = createSelector(
   state => state.questions.isFetching,
+  state => state.answers.isFetching,
   (...args) => args.reduce((prev, cur) => prev || cur, false)
 )
 
