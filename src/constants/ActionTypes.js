@@ -19,4 +19,5 @@ export default {
   ...makeProps('REQUEST_GET_QUESTIONS'),
   ...makeProps('REQUEST_GET_ANSWERS'),
   ...makeProps('REQUEST_UPSERT_ANSWER'),
+  ...makeProps('REQUEST_UPLOAD_FILE'),
 };
