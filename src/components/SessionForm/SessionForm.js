@@ -15,10 +15,6 @@ import * as errorParser from '../../utils/errorParser';
 
 @reduxForm({
   form: 'sessionUpdate',
-  initialValues: {
-    email: '',
-    mobileNumber: '',
-  }
 })
 class SignInForm extends React.Component {
 
@@ -77,13 +73,26 @@ class SignInForm extends React.Component {
     return dispatch(sessionActions.update(payload))
       .promise
       .then((action) => {
-        console.log('success');
+        this.props.initialize({
+          email: action.payload.session.email,
+          mobileNumber: action.payload.session.mobileNumber,
+        })
       })
       .catch((action) => {
         const errors = selectn('payload.body.errors', action);
-        console.log(errorParser.formError(errors).toJS());
         throw new SubmissionError(errorParser.formError(errors).toJS());
       });
+  }
+
+  renderSubmitButton() {
+    if (this.props.dirty) {
+      return (
+        <Button className={styles.button} type="submit">
+          저장
+        </Button>
+      )
+    }
+    return null;
   }
 
   render() {
@@ -92,9 +101,7 @@ class SignInForm extends React.Component {
       <form className={styles.wrapper} onSubmit={handleSubmit(this.handleSubmit)}>
         <Field name="email" component={this.renderEmailField} />
         <Field name="mobileNumber" component={this.renderMobileNumberField} />
-        <Button className={styles.button} type="submit">
-          저장
-        </Button>
+        {this.renderSubmitButton()}
       </form>
     )
   }
