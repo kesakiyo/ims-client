@@ -73,7 +73,10 @@ class SignInForm extends React.Component {
         </div>
         <Field name="email" component={this.renderEmailField} />
         <Field name="password" component={this.renderPasswordField} />
-        <Button className={styles.button} type="submit">
+        <Button
+          loading={this.props.submitting}
+          className={styles.button}
+          type="submit">
           로그인
         </Button>
         <div className={styles.footer}>

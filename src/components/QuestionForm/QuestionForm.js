@@ -75,7 +75,11 @@ class QuestionForm extends React.Component {
   renderSubmitButton() {
     if (this.isPossibleSubmit()) {
       return (
-        <Button className={styles.button} type="submit">
+        <Button
+          loading={this.props.submitting}
+          loaderSize={18}
+          className={styles.button}
+          type="submit">
           저장
         </Button>
       )

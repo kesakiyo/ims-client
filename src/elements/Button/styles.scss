@@ -1,8 +1,11 @@
 @import '../../styles/colors.scss';
 
 .button {
-  padding: 0 30px;
   height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
   font-size: 18px;
   box-shadow: none;
   outline: none;
@@ -16,4 +19,29 @@
     border: 2px solid $blue-hover;
     cursor: pointer;
   }
+}
+
+.button[disabled] {
+  background-color: $snow;
+  border: 2px solid $snow;
+  color: $gray;
+
+  &:hover, &:active, &:hover:active {
+    background-color: $snow;
+    border: 2px solid $snow;
+    cursor: not-allowed;
+  }
+}
+
+.spinner {
+  margin-right: 10px;
+  animation: rotate 0.8s infinite linear;
+  border: 3px solid $gray;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
 }
