@@ -2,25 +2,27 @@
 
 .wrapper {
   margin-top: 30px;
-  width: 360px;
+  position: relative;
+  width: 300px;
 
   .row {
-    display: flex;
-    height: 70px;
+    margin-bottom: 14px;
 
-    .label {
-      height: 40px;
-      width: 80px;
-      display: flex;
-      align-items: center;
-      font-size: 15px;
-      color: $dark;
+    .input {
+      margin-bottom: 5px;
+    }
+
+    .description {
+      font-size: 13px;
+      font-weight: 500;
+      color: $silver;
+      white-space: nowrap;
     }
   }
 
   .button {
     margin-top: 10px;
-    height: 35px;
-    padding: 0 30px;
+    height: 34px;
+    width: 100%;
   }
 }
