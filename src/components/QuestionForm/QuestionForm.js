@@ -11,7 +11,7 @@ import styles from './styles.scss';
 import TextArea from '../../elements/TextArea';
 import Button from '../../elements/Button';
 import Link from '../../elements/Link';
-import sessionActions from '../../redux/actions/session';
+import questionActions from '../../redux/actions/question';
 import * as errorParser from '../../utils/errorParser';
 
 @reduxForm()
@@ -37,6 +37,7 @@ class QuestionForm extends React.Component {
     return (
       <TextArea
         placeholder={`답변을 입력해 주세요. 최대 ${this.props.question.limit}자까지 가능합니다.`}
+        maxLength={this.props.question.limit}
         className={styles.answer}
         autoFocus={this.props.autoFocus}
         value={input.value}
@@ -50,15 +51,20 @@ class QuestionForm extends React.Component {
   @autobind
   handleSubmit(answer, dispatch) {
     if (this.isPossibleSubmit()) {
-      return dispatch()
-      .promise
-      .then((action) => {
+      const payload = {
+        id: this.props.question.id,
+        answer,
+      }
 
-      })
-      .catch((action) => {
-        const errors = selectn('payload.body.errors', action);
-        throw new SubmissionError(errorParser.formError(errors).toJS());
-      });
+      return dispatch(questionActions.upsertAnswer(payload))
+        .promise
+        .then((action) => {
+
+        })
+        .catch((action) => {
+          const errors = selectn('payload.body.errors', action);
+          throw new SubmissionError(errorParser.formError(errors).toJS());
+        });
     }
 
     return null;
