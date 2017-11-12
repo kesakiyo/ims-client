@@ -29,9 +29,16 @@ export default (state = initState, action) => {
       }
 
     case AT.REQUEST_UPSERT_ANSWER_SUCCESS:
-      // todo: 답변이 새롭게 생성됐을 떄 무엇을 해야하는가?
+    case AT.REQUEST_UPLOAD_FILE_SUCCESS:
       return {
         ...state,
+        answers: (() => {
+          const idx = state.answers.findIndex(answer => answer.id === action.payload.answer.id);
+          if (idx !== -1) {
+            return state.answers.slice(0, idx).concat(state.answers.slice(idx + 1)).concat([action.payload.answer]);
+          }
+          return state.answers.concat([action.payload.answer]);
+        })(),
       }
 
     default:

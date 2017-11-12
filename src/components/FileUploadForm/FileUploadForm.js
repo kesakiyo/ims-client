@@ -78,7 +78,23 @@ class FileUploadForm extends React.Component {
         onDrop={handleDrop}
         multiple={false}>
         {this.state.submitting ? <div className={styles.spinner} /> : null}
-        파일을 업로드 하려면 클릭하세요.
+        {
+          (() => {
+            if (this.props.question.answer.file && this.props.question.answer.file.name) {
+              return (
+                <div className={styles.file}>
+                  <div className={styles.name}>
+                    {`${this.props.question.answer.file.name}이 올라가 있습니다.`}
+                  </div>
+                  <div className={styles.verbose}>
+                    파일을 수정하려면 클랙해주세요.
+                  </div>
+                </div>
+              )
+            }
+            return '파일을 업로드하려면 클릭해주세요.'
+          })()
+        }
       </Dropzone>
     )
   }
