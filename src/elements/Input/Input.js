@@ -15,19 +15,20 @@ class Input extends React.Component {
   componentDidMount() {
     if (this.props.autoFocus && this._refs.input) {
       this._refs.input.focus();
+      const length = (this._refs.input.value || '').length
+      this._refs.input.setSelectionRange(length, length);
     }
   }
 
   render() {
+    const { children, autoFocus, hasError, ...props } = this.props
     return (
       <div className={classNames(styles.wrapper, { [styles.error]: this.props.hasError })}>
         <input
           ref={(e) => this._refs.input = e}
           className={classNames(styles.input, { [styles.error]: this.props.hasError })}
-          placeholder={this.props.placeholder}
-          type={this.props.type}
-          onChange={this.props.onChange} />
-        {this.props.children}
+          {...props} />
+        {children}
       </div>
     )
   }
@@ -39,14 +40,13 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   placeholder: PropTypes.string,
   type: PropTypes.string,
+  value: PropTypes.string,
 }
 
 Input.defaultProps = {
   onChange: () => {},
   hasError: false,
   autoFocus: false,
-  placeholder: '',
-  type: '',
 }
 
 export default Input;

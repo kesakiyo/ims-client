@@ -28,6 +28,12 @@ export default (state = initState, action) => {
         isFetching: false,
       }
 
+    case AT.REQUEST_UPDATE_SESSION_SUCCESS:
+      return {
+        ...state,
+        session: action.payload.session,
+      }
+
     default:
       return state
   }
