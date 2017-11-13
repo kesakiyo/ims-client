@@ -12,6 +12,7 @@ import SignIn from './containers/SignIn';
 import SignUp from './containers/SignUp';
 import Session from './containers/Session';
 import Questions from './containers/Questions';
+import Publishing from './containers/Publishing';
 
 export default (
   <Router history={redux.getHistory()}>
@@ -25,6 +26,7 @@ export default (
           <IndexRedirect to="session" />
           <Route path="session" component={Session} />
           <Route path="questions" component={Questions} />
+          <Route path="publishing" component={Publishing} />
         </Route>
       </Route>
     </Route>
