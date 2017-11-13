@@ -10,5 +10,44 @@
 <body>
   <div id="main"></div>
   <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
+  <!-- start channel plugin script -->
+    <script>
+        (function() {
+          if (window.CHPlugin) {
+            return window.console && console.error && console.error('Channel Plugin script included twice.');
+          }
+          var ch = { q: [] };
+          ['initialize', 'checkIn', 'checkOut', 'show', 'hide', 'track', 'timeTrack'].forEach(function(e) {
+            ch[e] = function() {
+              var n = Array.prototype.slice.call(arguments);
+              n.unshift(e);
+              ch.q.push(n);
+            }
+          });
+          window.CHPlugin = ch;
+          var node = document.createElement('div');
+          node.id = 'ch-plugin';
+          document.body.appendChild(node);
+          var async_load = function() {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//cdn.channel.io/plugin/ch-plugin-web.js';
+            s.charset = 'UTF-8';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+          };
+          if (window.attachEvent) {
+            window.attachEvent('onload', async_load);
+          } else {
+            window.addEventListener('load', async_load, false);
+          }
+        })();
+        window.CHPlugin.initialize({
+          plugin_id: '41f92ccf-f0fd-406e-b685-828f617ad00a',
+          hide_default_launcher: false
+        });
+      </script>
+    <!-- end channel plugin script -->
 </body>
 </html>

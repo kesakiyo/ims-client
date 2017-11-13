@@ -16,8 +16,11 @@ export default (state = initState, action) => {
       }
 
     case AT.REQUEST_SIGN_IN_SUCCESS:
-    case AT.REQUEST_SIGN_UP_SUCCESS:
     case AT.REQUEST_GET_ME_SUCCESS:
+      window.CHPlugin.checkIn({
+        id: action.payload.user.id,
+        name: action.payload.user.email,
+      });
       return {
         ...state,
         user: action.payload.user,
@@ -31,6 +34,7 @@ export default (state = initState, action) => {
       }
 
     case AT.REQUEST_SIGN_OUT_SUCCESS:
+    window.CHPlugin.checkOut();
     return {
       ...state,
       user: null,

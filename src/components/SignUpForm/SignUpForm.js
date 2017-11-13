@@ -71,7 +71,7 @@ class SignUpForm extends React.Component {
     return dispatch(userActions.signUp(user))
       .promise
       .then((action) => {
-        this.props.onRedirect('/boards');
+        this.props.onRedirect('/signin');
       })
       .catch((action) => {
         const errors = selectn('payload.body.errors', action);
