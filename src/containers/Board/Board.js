@@ -44,6 +44,12 @@ class Board extends React.Component {
             activeClassName={styles.active}>
             질문 목록
           </Link>
+          <Link
+            to={`/boards/${this.props.params.id}/publishing`}
+            className={styles.item}
+            activeClassName={styles.active}>
+            최종 제출
+          </Link>
         </div>
         <div className={styles.body}>
           {this.props.children}
