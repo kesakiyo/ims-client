@@ -29,6 +29,7 @@
     "history": "^1.17.0",
     "immutable": "^3.8.2",
     "keymirror": "^0.1.1",
+    "moment": "^2.19.2",
     "prop-types": "^15.6.0",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",

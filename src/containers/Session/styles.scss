@@ -10,14 +10,27 @@
   display: flex;
   flex-direction: column;
 
-  .title {
+  .header {
     margin: 10px 20px 0 20px;
     padding: 10px 20px 0 0;
     height: 50px;
+    display: flex;
     border-bottom: 1px solid $silver;
     font-size: 25px;
     font-weight: 600;
     color: $black;
+
+    .title {
+      flex: 1 1 auto;
+    }
+
+    .time {
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 5px;
+      font-size: 15px;
+      color: $gray;
+    }
   }
 
   .body {

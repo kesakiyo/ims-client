@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import selectn from 'selectn';
+import moment from 'moment';
 import autobind from 'core-decorators/lib/autobind';
 
 /* Internal dependencies */
@@ -66,8 +67,9 @@ class Questions extends React.Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <div className={styles.title}>
-          {this.props.board.title}
+        <div className={styles.header}>
+          <div className={styles.title}>{this.props.board.title}</div>
+          <div className={styles.time}>마감 까지 약 {moment(this.props.board.endTime).toNow()}</div>
         </div>
         <div className={styles.body}>
           {this.props.questions.map(this.renderQuestion)}
