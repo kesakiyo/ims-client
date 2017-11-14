@@ -12,6 +12,7 @@ import Button from '../../elements/Button';
 import Link from '../../elements/Link';
 import sessionActions from '../../redux/actions/session';
 import * as errorParser from '../../utils/errorParser';
+import notification from '../../services/notification';
 
 @reduxForm({
   form: 'sessionUpdate',
@@ -97,6 +98,7 @@ class SignInForm extends React.Component {
     return dispatch(sessionActions.update(payload))
       .promise
       .then((action) => {
+        notification.success('성공적으로 정보를 저장했습니다.');
         this.props.initialize({
           email: action.payload.session.email,
           name: action.payload.session.name,

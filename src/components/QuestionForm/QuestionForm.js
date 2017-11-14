@@ -13,6 +13,7 @@ import Button from '../../elements/Button';
 import Link from '../../elements/Link';
 import questionActions from '../../redux/actions/question';
 import * as errorParser from '../../utils/errorParser';
+import notification from '../../services/notification';
 
 @reduxForm()
 @connect((state, ownProps) => ({
@@ -59,11 +60,13 @@ class QuestionForm extends React.Component {
       return dispatch(questionActions.upsertAnswer(payload))
         .promise
         .then((action) => {
+          notification.success('성공적으로 답변을 저장했습니다.');
           this.props.initialize({
             text: action.payload.answer.text,
           })
         })
         .catch((action) => {
+          notification.error('답변 저장을 실패했습니다.');
           const errors = selectn('payload.body.errors', action);
           throw new SubmissionError(errorParser.formError(errors).toJS());
         });

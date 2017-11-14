@@ -14,6 +14,7 @@ import Button from '../../elements/Button';
 import Link from '../../elements/Link';
 import questionActions from '../../redux/actions/question';
 import * as errorParser from '../../utils/errorParser';
+import notification from '../../services/notification';
 
 @connect()
 class FileUploadForm extends React.Component {
@@ -34,6 +35,7 @@ class FileUploadForm extends React.Component {
         this.handleUploadFile(action.payload.answer.id, files);
       })
       .catch((action) => {
+        notification.error('파일 업로드에 실패했습니다.');
         this.setState({ submitting: false });
         console.log(action.payload.body.error);
       });
@@ -49,9 +51,11 @@ class FileUploadForm extends React.Component {
     return this.props.dispatch(questionActions.uploadFile(payload))
       .promise
       .then((action) => {
+        notification.success('성공적으로 파일을 업로드했습니다.');
         this.setState({ submitting: false });
       })
       .catch((action) => {
+        notification.error('파일 업로드에 실패했습니다.');
         this.setState({ submitting: false });
         console.log(action.payload.body.error);
       })
