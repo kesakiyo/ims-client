@@ -13,6 +13,7 @@ import redux from './services/redux';
 
 /* init settings */
 import './styles/global.scss';
+import 'moment-duration-format';
 
 /* polyfill */
 require('es6-promise').polyfill();
