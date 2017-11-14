@@ -14,6 +14,10 @@ import redux from './services/redux';
 /* init settings */
 import './styles/global.scss';
 
+/* polyfill */
+require('es6-promise').polyfill();
+require("babel-polyfill");
+
 /* Render */
 ReactDom.render(
   <Provider store={redux.getStore()}>

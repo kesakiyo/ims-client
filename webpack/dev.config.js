@@ -84,7 +84,7 @@ module.exports = {
     }),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ko|en|ja/),
   ],
-  devtool: 'eval',
+  devtool: 'source-map',
   devServer: {
     contentBase: path.resolve(__dirname, '..', 'build'),
     compress: true,
