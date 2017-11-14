@@ -67,13 +67,7 @@ class Questions extends React.Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <div className={styles.title}>{this.props.board.title}</div>
-          <div className={styles.time}>마감 까지 약 {moment(this.props.board.endTime).toNow()}</div>
-        </div>
-        <div className={styles.body}>
-          {this.props.questions.map(this.renderQuestion)}
-        </div>
+        {this.props.questions.map(this.renderQuestion)}
       </div>
     )
   }

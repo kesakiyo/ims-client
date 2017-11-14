@@ -47,5 +47,13 @@ $sidebar-width: 220px;
     left: $sidebar-width;
     right: 0;
     bottom: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+      flex: 1 1 0;
+      position: relative;
+    }
   }
 }

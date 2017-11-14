@@ -9,6 +9,7 @@ import boardActions from '../../redux/actions/board';
 import withPreloader from '../../decorators/withPreloader';
 import selectors from '../../redux/selectors';
 import Link from '../../elements/Link';
+import BoardHeader from '../../components/BoardHeader';
 
 const initializer = (prevProps, props, dispatch) => {
   const prevId = selectn('params.id', prevProps)
@@ -22,10 +23,15 @@ const initializer = (prevProps, props, dispatch) => {
   return false;
 }
 
+const mapStateToProps = (state) => ({
+  board: selectors.board.getBoard(state),
+})
+
 @withPreloader({
   initializer,
   isLoading: selectors.loading.Board,
 })
+@connect(mapStateToProps)
 class Board extends React.Component {
 
   render() {
@@ -52,7 +58,10 @@ class Board extends React.Component {
           </Link>
         </div>
         <div className={styles.body}>
-          {this.props.children}
+          <BoardHeader board={this.props.board} />
+          <div className={styles.content}>
+            {this.props.children}
+          </div>
         </div>
       </div>
     )
