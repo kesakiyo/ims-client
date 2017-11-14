@@ -72,11 +72,11 @@ class SignUpForm extends React.Component {
     return dispatch(userActions.signUp(user))
       .promise
       .then((action) => {
-        notification.success('성공적으로 회원가일을 했습니다.');
+        notification.success('성공적으로 회원가입을 했습니다.');
         this.props.onRedirect('/signin');
       })
       .catch((action) => {
-        errorParser.showError(payload.body.error);
+        errorParser.showError(selectn('payload.body.error', action));
         const errors = selectn('payload.body.errors', action);
         throw new SubmissionError(errorParser.formError(errors).toJS());
       });

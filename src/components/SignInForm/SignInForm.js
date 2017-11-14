@@ -61,7 +61,7 @@ class SignInForm extends React.Component {
         this.props.onRedirect('/boards');
       })
       .catch((action) => {
-        errorParser.showError(payload.body.error);
+        errorParser.showError(selectn('payload.body.error', action));
         const errors = selectn('payload.body.errors', action);
         throw new SubmissionError(errorParser.formError(errors).toJS());
       });

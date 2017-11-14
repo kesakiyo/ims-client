@@ -106,6 +106,7 @@ class SignInForm extends React.Component {
         })
       })
       .catch((action) => {
+        notification.error('정보저장에 실패했습니다.');
         const errors = selectn('payload.body.errors', action);
         throw new SubmissionError(errorParser.formError(errors).toJS());
       });
