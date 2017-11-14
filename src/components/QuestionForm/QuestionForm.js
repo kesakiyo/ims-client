@@ -66,7 +66,7 @@ class QuestionForm extends React.Component {
           })
         })
         .catch((action) => {
-          notification.error('답변 저장 실패했습니다.');
+          notification.error('답변 저장에 실패했습니다.');
           const errors = selectn('payload.body.errors', action);
           throw new SubmissionError(errorParser.formError(errors).toJS());
         });
