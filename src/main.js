@@ -12,8 +12,9 @@ import routes from './routes';
 import redux from './services/redux';
 
 /* init settings */
-import './styles/global.scss';
 import 'moment-duration-format';
+import 'react-notifications/lib/notifications.css';
+import './styles/global.scss';
 
 /* polyfill */
 require('es6-promise').polyfill();

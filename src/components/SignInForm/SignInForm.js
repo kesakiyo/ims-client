@@ -13,6 +13,7 @@ import Button from '../../elements/Button';
 import Link from '../../elements/Link';
 import userActions from '../../redux/actions/user';
 import * as errorParser from '../../utils/errorParser';
+import notification from '../../services/notification';
 
 @reduxForm({
   form: 'signIn',
@@ -56,9 +57,11 @@ class SignInForm extends React.Component {
     return dispatch(userActions.signIn(user))
       .promise
       .then((action) => {
+        notification.success('성공적으로 로그인했습니다.');
         this.props.onRedirect('/boards');
       })
       .catch((action) => {
+        errorParser.showError(selectn('payload.body.error', action));
         const errors = selectn('payload.body.errors', action);
         throw new SubmissionError(errorParser.formError(errors).toJS());
       });
