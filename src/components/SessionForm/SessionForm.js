@@ -21,6 +21,7 @@ class SignInForm extends React.Component {
   componentWillMount() {
     this.props.initialize({
       email: this.props.session.email || '',
+      name: this.props.session.name || '',
       mobileNumber: this.props.session.mobileNumber || '',
     })
   }
@@ -41,6 +42,27 @@ class SignInForm extends React.Component {
         </Input>
         <div className={styles.description}>
           지원 결과 및 공지사항을 받을 이메일 주소입니다.
+        </div>
+      </div>
+    );
+  }
+
+  @autobind
+  renderNameField(fields) {
+    const { input, meta } = fields;
+    return (
+      <div className={styles.row}>
+        <Input
+          placeholder="이름 (에: 홍길동)"
+          autoFocus
+          className={styles.input}
+          value={input.value}
+          hasError={meta.invalid}
+          onChange={input.onChange}>
+          {meta.error}
+        </Input>
+        <div className={styles.description}>
+          지원자의 이름입니다.
         </div>
       </div>
     );
@@ -77,6 +99,7 @@ class SignInForm extends React.Component {
       .then((action) => {
         this.props.initialize({
           email: action.payload.session.email,
+          name: action.payload.session.name,
           mobileNumber: action.payload.session.mobileNumber,
         })
       })
@@ -105,6 +128,7 @@ class SignInForm extends React.Component {
     return (
       <form className={styles.wrapper} onSubmit={handleSubmit(this.handleSubmit)}>
         <Field name="email" component={this.renderEmailField} />
+        <Field name="name" component={this.renderNameField} />
         <Field name="mobileNumber" component={this.renderMobileNumberField} />
         {this.renderSubmitButton()}
       </form>
