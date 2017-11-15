@@ -6,28 +6,132 @@
   right: 0;
   left: 0;
   bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 20px;
 
-  .image {
-    width: 130px;
-    height: 130px;
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: $snow;
+    margin: 30px 0;
   }
 
-  .title {
-    margin-top: 23px;
-    font-size: 23px;
-    font-weight: 600;
-    color: $dark;
+  .form {
+
+    .title {
+      height: 30px;
+      font-size: 20px;
+      font-weight: 600;
+      color: $dark;
+    }
+
+    .session {
+      .row {
+        padding-top: 10px;
+        display: flex;
+
+        .label {
+          height: 40px;
+          width: 70px;
+          display: flex;
+          align-items: center;
+          font-size: 13px;
+          font-weight: 600;
+          color: $dark;
+        }
+
+        .content {
+          .value {
+            height: 40px;
+            min-width: 300px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            border: 1px solid $silver;
+            border-radius: 3px;
+            background-color: $light;
+            color: $black;
+            font-size: 15px;
+
+            &.error {
+              border: 1px solid $red;
+            }
+
+            &:hover {
+              cursor: not-allowed;
+            }
+          }
+
+          .meta {
+            margin-top: 5px;
+            font-size: 13px;
+            color: $red;
+          }
+        }
+      }
+    }
+
+    .question {
+      margin-top: 10px;
+      max-width: 800px;
+      max-height: 300px;
+      overflow-y: auto;
+      display: flex;
+      padding: 10px;
+      border-radius: 3px;
+
+      .gutter {
+        width: 20px;
+        font-size: 14px;
+        color: $dark;
+        font-weight: 600;
+      }
+
+      .content {
+        flex: 1 1 0;
+
+        .title {
+          font-size: 14px;
+          color: $dark;
+          font-weight: 600;
+        }
+
+        .answer {
+          margin-top: 5px;
+          margin-bottom: 7px;
+          border: 1px solid $silver;
+          border-radius: 3px;
+          background-color: $light;
+          padding: 15px 10px;
+
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      .footer {
+        display: flex;
+
+        .notice {
+          flex: 1 1 0;
+          font-size: 13px;
+          color: $silver;
+        }
+      }
+    }
   }
 
-  .description {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 600;
-    color: $gray;
+  .publishing {
+    height: 100px;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .button {
+      height: 40px;
+      padding: 0 30px;
+      font-size: 15px;
+    }
   }
 }
