@@ -9,15 +9,30 @@
   font-size: 18px;
   box-shadow: none;
   outline: none;
-  background-color: $blue;
-  border: 2px solid $blue;
   border-radius: 3px;
-  color: $white;
 
-  &:hover, &:active, &:hover:active {
-    background-color: $blue-hover;
-    border: 2px solid $blue-hover;
-    cursor: pointer;
+  &.default {
+    background-color: $blue;
+    border: 2px solid $blue;
+    color: $white;
+
+    &:hover, &:active, &:hover:active {
+      background-color: $blue-hover;
+      border: 2px solid $blue-hover;
+      cursor: pointer;
+    }
+  }
+
+  &.border {
+    border: 1px solid $silver;
+    background-color: transparent;
+    color: $black;
+
+    &:hover, &:active, &:hover:active {
+      background-color: $silver;
+      color: $white;
+      cursor: pointer;
+    }
   }
 }
 

@@ -1,0 +1,60 @@
+@import '../../styles/colors.scss';
+
+.form {
+  .title {
+    height: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    color: $dark;
+  }
+
+  .question {
+    margin-top: 10px;
+    display: flex;
+    padding: 10px;
+    border-radius: 3px;
+
+    .gutter {
+      width: 20px;
+      font-size: 14px;
+      color: $dark;
+      font-weight: 600;
+    }
+
+    .content {
+      flex: 1 1 0;
+
+      .title {
+        font-size: 14px;
+        color: $dark;
+        font-weight: 600;
+      }
+
+      .answer {
+        margin-top: 5px;
+        margin-bottom: 7px;
+        max-height: 300px;
+        padding: 15px 10px;
+        border: 1px solid $silver;
+        border-radius: 3px;
+        background-color: $light;
+        overflow-y: auto;
+        white-space: pre-wrap;
+
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .footer {
+      display: flex;
+
+      .notice {
+        flex: 1 1 0;
+        font-size: 13px;
+        color: $silver;
+      }
+    }
+  }
+}

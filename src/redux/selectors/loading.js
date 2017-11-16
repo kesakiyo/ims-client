@@ -18,8 +18,16 @@ const Questions = createSelector(
   (...args) => args.reduce((prev, cur) => prev || cur, false)
 )
 
+const Publishing = createSelector(
+  state => state.questions.isFetching,
+  state => state.answers.isFetching,
+  state => state.session.isFetching,
+  (...args) => args.reduce((prev, cur) => prev || cur, false)
+)
+
 export default {
   App,
   Board,
   Questions,
+  Publishing,
 }

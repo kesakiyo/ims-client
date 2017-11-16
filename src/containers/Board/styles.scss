@@ -47,6 +47,7 @@ $sidebar-width: 220px;
     left: $sidebar-width;
     right: 0;
     bottom: 0;
+    min-width: 600px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
