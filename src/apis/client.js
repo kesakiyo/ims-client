@@ -1,5 +1,6 @@
 /* External dependencies */
 import sf from 'zoyi-simple-fetch';
+import moment from 'moment';
 
 const client = new sf.Client();
 
@@ -13,5 +14,10 @@ client.setDefaultHeader({
   'Content-Type': 'application/json'
 });
 client.credentials = 'include';
+
+client.get_no_cache = (url, query = {}) => {
+  const now = +moment();
+  return client.get(url, { now, ...query });
+}
 
 export default client;
