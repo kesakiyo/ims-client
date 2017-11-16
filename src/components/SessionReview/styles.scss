@@ -1,0 +1,56 @@
+@import '../../styles/colors.scss';
+
+.form {
+  .title {
+    height: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    color: $dark;
+  }
+
+  .session {
+    .row {
+      padding-top: 10px;
+      display: flex;
+
+      .label {
+        height: 40px;
+        width: 70px;
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: $dark;
+      }
+
+      .content {
+        .value {
+          height: 40px;
+          min-width: 300px;
+          display: flex;
+          align-items: center;
+          padding-left: 10px;
+          border: 1px solid $silver;
+          border-radius: 3px;
+          background-color: $light;
+          color: $black;
+          font-size: 15px;
+
+          &.error {
+            border: 1px solid $red;
+          }
+
+          &:hover {
+            cursor: not-allowed;
+          }
+        }
+
+        .meta {
+          margin-top: 5px;
+          font-size: 13px;
+          color: $red;
+        }
+      }
+    }
+  }
+}

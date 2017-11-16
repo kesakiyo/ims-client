@@ -1,6 +1,5 @@
 /* External dependencies */
 import React from 'react';
-import classNames from 'classnames';
 import { connect } from 'react-redux';
 import selectn from 'selectn';
 import autobind from 'core-decorators/lib/autobind';
@@ -10,8 +9,10 @@ import styles from './styles.scss';
 import questionActions from '../../redux/actions/question';
 import selectors from '../../redux/selectors';
 import withPreloader from '../../decorators/withPreloader';
-import QuestionTypes from '../../constants/QuestionTypes';
 import Button from '../../elements/Button';
+import Modal from '../../elements/Modal';
+import SessionReview from '../../components/SessionReview';
+import QuestionsReview from '../../components/QuestionsReview';
 
 const initializer = (prevProps, props, dispatch) => {
   const prevId = selectn('params.id', prevProps);
@@ -38,109 +39,29 @@ const mapStateToProps = (state) => ({
 @connect(mapStateToProps)
 class Publishing extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      showModal: false,
+    }
+  }
+
+  @autobind
+  handleSubmit() {
+    // todo: 구현해야 할 부분
+  }
+
   isDisabled() {
     const { email, name, mobileNumber } = this.props.session
 
     return !email || !name || !mobileNumber
   }
 
-  renderSessionRow(label, value) {
-    return (
-      <div className={styles.row}>
-        <div className={styles.label}>
-          {label}
-        </div>
-        <div className={styles.content}>
-          <div className={classNames(styles.value, { [styles.error]: !value })}>
-            {value}
-          </div>
-          <div className={styles.meta}>
-            {!value ? `${label}을(를) 빈 채로 제출할 수 없습니다.` : null}
-          </div>
-        </div>
-    </div>
-    )
-  }
-
-  renderSession(session = this.props.session) {
-    const { email, name, mobileNumber } = session
-    return (
-      <div className={styles.form}>
-        <div className={styles.title}>
-          지원자 정보
-        </div>
-        <div className={styles.session}>
-          {this.renderSessionRow('이메일', email)}
-          {this.renderSessionRow('이름', name)}
-          {this.renderSessionRow('연락처', mobileNumber)}
-        </div>
-      </div>
-    )
-  }
-
-  renderQuestion(question, idx) {
-    return (
-      <div key={idx} className={styles.question}>
-        <div className={styles.gutter}>
-          {`${idx + 1}.`}
-        </div>
-        <div className={styles.content}>
-          <div className={styles.title}>
-            {question.title}
-          </div>
-          <div className={styles.answer}>
-            {
-              (() => {
-                if (question.type === QuestionTypes.TEXT) {
-                  return selectn('answer.text', question);
-                } else if (question.type === QuestionTypes.FILE) {
-                  const fileName = selectn('answer.file.name', question)
-                  if (fileName) {
-                    return `${fileName}을(를) 업로드 했습니다.`;
-                  }
-                  return '업로드 된 파일이 없습니다.';
-                }
-                return null;
-              })()
-            }
-          </div>
-          {
-            (() => {
-              if (question.type === QuestionTypes.TEXT) {
-                return (
-                  <div className={styles.footer}>
-                    <div className={styles.notice}>
-                      {`(${(question.answer.text || '').length} / ${question.limit})`}
-                    </div>
-                  </div>
-                )
-                return null;
-              }
-            })()
-          }
-        </div>
-      </div>
-    )
-  }
-
-  renderQuestions(questions = this.props.questions) {
-    return (
-      <div className={styles.form}>
-        <div className={styles.title}>
-          질문 목록
-        </div>
-        <div>
-          {questions.map(this.renderQuestion)}
-        </div>
-        {this.renderPublishigButton()}
-      </div>
-    )
-  }
-
   renderPublishigButton() {
     return (
       <div className={styles.publishing}>
         <Button
+          onClick={this.handleShowModal}
           disabled={this.isDisabled()}
           className={styles.button}>
           제출하기
@@ -149,12 +70,58 @@ class Publishing extends React.Component {
     )
   }
 
+  @autobind
+  handleShowModal() {
+    this.setState({
+      showModal: true,
+    })
+  }
+
+  @autobind
+  handleHideModal() {
+    this.setState({
+      showModal: false,
+    })
+  }
+
+  rendorConfirmModal() {
+    return (
+      <Modal
+        show={this.state.showModal}
+        onHide={this.handleHideModal} >
+        <div className={styles.modal}>
+          <div className={styles.description}>
+            {'제출을 하면 더 이상 수정할 수 없습니다.\n제출하시겠습니까?'}
+          </div>
+          <div className={styles.divider} />
+          <div className={styles.footer}>
+            <Button
+              onClick={this.handleHideModal}
+              buttonType={Button.TYPES.BORDER}
+              className={styles.button}>
+              취소
+            </Button>
+            <Button
+              onClick={this.handleSubmit}
+              className={styles.button}>
+              제출
+            </Button>
+          </div>
+        </div>
+      </Modal>
+    )
+  }
+
   render() {
     return (
       <div className={styles.wrapper}>
-        {this.renderSession()}
+        <SessionReview session={this.props.session} />
         <div className={styles.divider} />
-        {this.renderQuestions()}
+        <div className={styles.content}>
+          <QuestionsReview questions={this.props.questions} />
+          {this.renderPublishigButton()}
+        </div>
+        {this.rendorConfirmModal()}
       </div>
     )
   }

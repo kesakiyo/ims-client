@@ -1,0 +1,6 @@
+{
+  "name": "QuestionsReview",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./QuestionsReview.js"
+}
