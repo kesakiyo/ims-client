@@ -1,7 +1,7 @@
 /* Internal dependencies */
 import client from './client';
 
-const getList = (interviewId) => client.get(`/interviews/${interviewId}/questions`)
+const getList = (interviewId) => client.get_no_cache(`/interviews/${interviewId}/questions`)
 
 const upsertAnswer = (id, answer) => (
   client.post(`/questions/${id}/answers`, answer)

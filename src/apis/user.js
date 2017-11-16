@@ -11,7 +11,7 @@ const signUp = (email, password, passwordConfirm) => (
 
 const signOut = () => client.delete('/users/signout')
 
-const getMe = () => client.get('/users/me')
+const getMe = () => client.get_no_cache('/users/me')
 
 export default {
   signIn,
