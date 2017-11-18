@@ -1,0 +1,81 @@
+@import '../../styles/colors.scss';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  font-size: 15px;
+  color: $black;
+
+  &:not(.selected):not(.disabled) {
+    &:hover {
+      cursor: pointer;
+
+      .button {
+        &:after {
+          content: '';
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background-color: $snow-hover;
+        }
+      }
+    }
+  }
+
+  &.selected {
+    pointer-events: none;
+
+    &:not(.disabled) {
+      .button {
+        &:after {
+          content: '';
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background-color: $blue;
+        }
+      }
+    }
+
+    &.disabled {
+      .button {
+        &:after {
+          content: '';
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background-color: $gray;
+        }
+      }
+    }
+  }
+
+  &.disabled {
+    &:hover {
+      cursor: not-allowed;
+    }
+
+    .button {
+      background-color: $snow;
+    }
+  }
+
+  .button {
+    margin-right: 7px;
+    position: relative;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 1px solid $silver;
+  }
+}

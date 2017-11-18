@@ -37,7 +37,6 @@ class FileUploadForm extends React.Component {
       .catch((action) => {
         notification.error('파일 업로드에 실패했습니다.');
         this.setState({ submitting: false });
-        console.log(action.payload.body.error);
       });
   }
 
@@ -57,7 +56,6 @@ class FileUploadForm extends React.Component {
       .catch((action) => {
         notification.error('파일 업로드에 실패했습니다.');
         this.setState({ submitting: false });
-        console.log(action.payload.body.error);
       })
   }
 
