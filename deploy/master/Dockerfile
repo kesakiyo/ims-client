@@ -2,6 +2,8 @@ FROM kesakiyo/ims:client-base
 
 MAINTAINER Minho Cheon <kesakiyo@naver.com>
 
+ENV NODE_ENV production
+
 WORKDIR /usr/src/master/ims-client
 
 RUN git checkout master && \

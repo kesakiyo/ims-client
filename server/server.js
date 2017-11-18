@@ -24,4 +24,11 @@ app.get('*', (req, res) => {
 const http = require('http');
 const httpServer = http.createServer(app);
 
+const PORT = (() => {
+  if (process.env.NODE_ENV === 'production') {
+    return 4000;
+  }
+  return 4001;
+})();
+
 httpServer.listen(4000);
