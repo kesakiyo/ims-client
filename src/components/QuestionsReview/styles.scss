@@ -45,6 +45,18 @@
           cursor: not-allowed;
         }
       }
+
+      .radioForm {
+        min-height: 50px;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 10px;
+
+        .radio {
+          width: 70px;
+        }
+
+      }
     }
 
     .footer {

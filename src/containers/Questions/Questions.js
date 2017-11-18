@@ -11,6 +11,7 @@ import questionActions from '../../redux/actions/question';
 import selectors from '../../redux/selectors';
 import withPreloader from '../../decorators/withPreloader';
 import QuestionForm from '../../components/QuestionForm';
+import RadioForm from '../../components/RadioForm';
 import FileUploadForm from '../../components/FileUploadForm';
 import QuestionTypes from '../../constants/QuestionTypes';
 
@@ -58,6 +59,14 @@ class Questions extends React.Component {
             form={`question-${question.id}`}
             question={question} />
         )
+
+      case QuestionTypes.RADIO:
+      return (
+        <RadioForm
+          index={index}
+          key={question.id}
+          question={question} />
+      )
 
       default:
         return null;
