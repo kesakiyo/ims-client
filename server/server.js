@@ -31,4 +31,4 @@ const PORT = (() => {
   return 4001;
 })();
 
-httpServer.listen(4000);
+httpServer.listen(PORT);
