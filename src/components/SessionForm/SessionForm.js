@@ -33,6 +33,7 @@ class SignInForm extends React.Component {
     return (
       <div className={styles.row}>
         <Input
+          disabled={this.props.session.published}
           placeholder="이메일"
           autoFocus
           className={styles.input}
@@ -54,6 +55,7 @@ class SignInForm extends React.Component {
     return (
       <div className={styles.row}>
         <Input
+          disabled={this.props.session.published}
           placeholder="이름 (에: 홍길동)"
           autoFocus
           className={styles.input}
@@ -75,6 +77,7 @@ class SignInForm extends React.Component {
     return (
       <div className={styles.row}>
         <Input
+          disabled={this.props.session.published}
           placeholder="핸드폰 번호"
           className={styles.input}
           value={input.value}

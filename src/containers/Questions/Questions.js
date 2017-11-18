@@ -29,6 +29,7 @@ const initializer = (prevProps, props, dispatch) => {
 
 const mapStateToProps = (state) => ({
   board: selectors.board.getBoard(state),
+  session: selectors.session.getSession(state),
   questions: selectors.questions.getFetchedQuestions(state),
 })
 
@@ -45,6 +46,7 @@ class Questions extends React.Component {
       case QuestionTypes.FILE:
         return (
           <FileUploadForm
+            disabled={this.props.session.published}
             index={index}
             key={question.id}
             question={question} />
@@ -53,6 +55,7 @@ class Questions extends React.Component {
       case QuestionTypes.TEXT:
         return (
           <QuestionForm
+            disabled={this.props.session.published}
             autoFocus={index === 0}
             index={index}
             key={question.id}
@@ -63,6 +66,7 @@ class Questions extends React.Component {
       case QuestionTypes.RADIO:
       return (
         <RadioForm
+          disabled={this.props.session.published}
           index={index}
           key={question.id}
           question={question} />

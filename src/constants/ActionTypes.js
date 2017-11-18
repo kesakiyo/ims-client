@@ -16,6 +16,7 @@ export default {
   ...makeProps('REQUEST_GET_ME'),
   ...makeProps('REQUEST_JOIN_BOARD'),
   ...makeProps('REQUEST_UPDATE_SESSION'),
+  ...makeProps('REQUEST_PUBLISH_SESSION'),
   ...makeProps('REQUEST_GET_QUESTIONS'),
   ...makeProps('REQUEST_GET_ANSWERS'),
   ...makeProps('REQUEST_UPSERT_ANSWER'),

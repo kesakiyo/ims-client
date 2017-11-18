@@ -23,6 +23,24 @@ const updateEpic = action$ => (
     )
 );
 
+const publishEpic = action$ => (
+  action$.ofType(AT.REQUEST_PUBLISH_SESSION)
+    .switchMap(action =>
+      Rx.Observable.fromPromise(sessionAPI.publish(action.payload.id))
+        .map(payload => ({
+          uuid: action.uuid,
+          type: AT.REQUEST_PUBLISH_SESSION_SUCCESS,
+          payload,
+        }))
+        .catch(payload => Rx.Observable.of({
+          uuid: action.uuid,
+          type: AT.REQUEST_PUBLISH_SESSION_ERROR,
+          payload,
+        }))
+    )
+);
+
 export default combineEpics(
   updateEpic,
+  publishEpic,
 );

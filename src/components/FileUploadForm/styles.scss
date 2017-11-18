@@ -50,7 +50,11 @@
 
         &.disabled {
           background-color: $snow;
-          pointer-events: none;
+
+          &:hover {
+            cursor: not-allowed;
+            color: $gray;
+          }
         }
 
         &:hover {

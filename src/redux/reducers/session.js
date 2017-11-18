@@ -29,6 +29,7 @@ export default (state = initState, action) => {
       }
 
     case AT.REQUEST_UPDATE_SESSION_SUCCESS:
+    case AT.REQUEST_PUBLISH_SESSION_SUCCESS:
       return {
         ...state,
         session: action.payload.session,

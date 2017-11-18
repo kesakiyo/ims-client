@@ -30,4 +30,12 @@
       border: 1px solid $red;
     }
   }
+
+  .input[disabled] {
+    background-color: $snow;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
 }

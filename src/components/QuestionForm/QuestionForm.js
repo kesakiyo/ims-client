@@ -37,6 +37,7 @@ class QuestionForm extends React.Component {
     const { input, meta } = fields;
     return (
       <TextArea
+        disabled={this.props.disabled}
         placeholder={`답변을 입력해 주세요. 최대 ${this.props.question.limit}자까지 가능합니다.`}
         maxLength={this.props.question.limit}
         className={styles.answer}
@@ -119,11 +120,13 @@ class QuestionForm extends React.Component {
 QuestionForm.propTypes = {
   autoFocus: PropTypes.bool,
   index: PropTypes.number,
+  disabled: PropTypes.bool,
 }
 
 QuestionForm.defaultProps = {
   autoFocus: false,
   index: 0,
+  disabled: false,
 }
 
 export default QuestionForm;

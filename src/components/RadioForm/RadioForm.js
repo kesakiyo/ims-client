@@ -46,6 +46,7 @@ class RadioForm extends React.Component {
   renderRadioButton(value, index) {
     return (
       <Radio
+        disabled={this.props.disabled}
         onClick={this.handleClick}
         key={index}
         className={styles.radio}
@@ -75,10 +76,12 @@ class RadioForm extends React.Component {
 
 RadioForm.propTypes = {
   index: PropTypes.number,
+  disabled: PropTypes.bool,
 }
 
 RadioForm.defaultProps = {
   index: 0,
+  disabled: false,
 }
 
 export default RadioForm;

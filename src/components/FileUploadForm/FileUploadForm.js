@@ -75,8 +75,9 @@ class FileUploadForm extends React.Component {
 
     return (
       <Dropzone
-        className={classNames(styles.dropzone, { [styles.disabled]: this.state.submitting })}
-        disabled={this.state.submitting}
+        className={styles.dropzone}
+        disabledClassName={styles.disabled}
+        disabled={this.state.submitting || this.props.disabled}
         onDrop={handleDrop}
         multiple={false}>
         {this.state.submitting ? <div className={styles.spinner} /> : null}
@@ -123,10 +124,12 @@ class FileUploadForm extends React.Component {
 
 FileUploadForm.propTypes = {
   index: PropTypes.number,
+  disabled: PropTypes.bool,
 }
 
 FileUploadForm.defaultProps = {
   index: 0,
+  disabled: false,
 }
 
 export default FileUploadForm;
