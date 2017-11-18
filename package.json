@@ -8,6 +8,7 @@
     "start": "nodemon server/server.js",
     "forever": "forever -c 'node' server/server.js",
     "build": "webpack --config webpack/build.config.js --colors --progress",
+    "build:exp": "webpack --config webpack/build.exp.config.js --colors --progress",
     "dev": "webpack-dev-server --config webpack/dev.config.js --colors --progress"
   },
   "repository": {

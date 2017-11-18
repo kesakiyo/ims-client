@@ -6,6 +6,7 @@ const client = new sf.Client();
 
 client.setBaseUrl({
   development: 'http://localhost:3000/v1',
+  exp: 'http://api.exp.nextview.co/v1',
   production: 'http://api.nextview.co/v1',
 });
 
