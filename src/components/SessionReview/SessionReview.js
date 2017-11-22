@@ -1,9 +1,11 @@
 /* External dependencies */
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 /* Internal dependencies */
 import styles from './styles.scss';
+import Session from '../../models/Session';
 
 class SessionReview extends React.Component {
 
@@ -47,11 +49,11 @@ class SessionReview extends React.Component {
 }
 
 SessionReview.propTypes = {
-
+  session: PropTypes.instanceOf(Session),
 }
 
 SessionReview.defaultProps = {
-
+  session: new Session(),
 }
 
 export default SessionReview;

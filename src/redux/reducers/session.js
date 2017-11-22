@@ -1,9 +1,10 @@
 /* Internal dependnecies */
 import AT from '../../constants/ActionTypes';
+import Session from '../../models/Session';
 
 const initState = {
   isFetching: false,
-  session: null,
+  session: new Session(),
 };
 
 export default (state = initState, action) => {
@@ -19,7 +20,7 @@ export default (state = initState, action) => {
       return {
         ...state,
         isFetching: false,
-        session: action.payload.session,
+        session: new Session(action.payload.session),
       }
 
     case AT.REQUEST_JOIN_BOARD_ERROR:
@@ -32,7 +33,7 @@ export default (state = initState, action) => {
     case AT.REQUEST_PUBLISH_SESSION_SUCCESS:
       return {
         ...state,
-        session: action.payload.session,
+        session: new Session(action.payload.session),
       }
 
     default:

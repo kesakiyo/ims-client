@@ -1,9 +1,13 @@
+/* External dependencies */
+import Immutable from 'immutable';
+
 /* Internal dependnecies */
 import AT from '../../constants/ActionTypes';
+import Answer from '../../models/Answer';
 
 const initState = {
   isFetching: false,
-  answers: [],
+  answers: Immutable.List(),
 };
 
 export default (state = initState, action) => {
@@ -19,7 +23,7 @@ export default (state = initState, action) => {
       return {
         ...state,
         isFetching: false,
-        answers: action.payload.answers,
+        answers: Immutable.List(action.payload.answers.map(answer => new Answer(answer))),
       }
 
     case AT.REQUEST_GET_QUESTIONS_ERROR:
@@ -35,9 +39,9 @@ export default (state = initState, action) => {
         answers: (() => {
           const idx = state.answers.findIndex(answer => answer.id === action.payload.answer.id);
           if (idx !== -1) {
-            return state.answers.slice(0, idx).concat(state.answers.slice(idx + 1)).concat([action.payload.answer]);
+            return state.answers.set(idx, new Answer(action.payload.answer));
           }
-          return state.answers.concat([action.payload.answer]);
+          return state.answers.push(new Answer(action.payload.answer));
         })(),
       }
 

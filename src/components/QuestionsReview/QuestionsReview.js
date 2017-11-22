@@ -1,5 +1,7 @@
 /* External dependencies */
 import React from 'react';
+import Immutable from 'immutable';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import selectn from 'selectn';
 import autobind from 'core-decorators/lib/autobind';
@@ -14,7 +16,7 @@ class QuestionsReview extends React.Component {
   renderTextAnswer(question) {
     const answer = (
       <div key="text" className={styles.answer}>
-        {selectn('answer.text', question)}
+        {question.answer.text}
       </div>
     );
     const footer = (
@@ -32,7 +34,7 @@ class QuestionsReview extends React.Component {
       <div className={styles.answer}>
       {
         (() => {
-          const fileName = selectn('answer.file.name', question)
+          const fileName = question.answer.getFileName();
           if (fileName) {
             return `${fileName}을(를) 업로드 했습니다.`;
           }
@@ -44,7 +46,6 @@ class QuestionsReview extends React.Component {
   }
 
   renderRadioAnswer(question) {
-    const selectedValues = selectn('answer.values', question) || []
     return (
       <div className={styles.radioForm}>
         {
@@ -53,7 +54,7 @@ class QuestionsReview extends React.Component {
               key={index}
               label={value}
               className={styles.radio}
-              selected={selectedValues.includes(value)}
+              selected={question.answer.hasValue(value)}
               disabled />
           ))
         }
@@ -62,19 +63,14 @@ class QuestionsReview extends React.Component {
   }
 
   renderAnswer(question) {
-    switch (question.type) {
-      case QuestionTypes.TEXT:
-        return this.renderTextAnswer(question);
-
-      case QuestionTypes.FILE:
-        return this.renderFileAnswer(question);
-
-      case QuestionTypes.RADIO:
-        return this.renderRadioAnswer(question);
-
-      default:
-        return null;
+    if (question.isText()) {
+      return this.renderTextAnswer(question);
+    } else if (question.isFile()) {
+      return this.renderFileAnswer(question);
+    } else if (question.isRadio()) {
+      return this.renderRadioAnswer(question);
     }
+    return null;
   }
 
   @autobind
@@ -113,11 +109,11 @@ class QuestionsReview extends React.Component {
 }
 
 QuestionsReview.propTypes = {
-
+  questions: PropTypes.instanceOf(Immutable.List),
 }
 
 QuestionsReview.defaultProps = {
-
+  questions: Immutable.List(),
 }
 
 export default QuestionsReview;

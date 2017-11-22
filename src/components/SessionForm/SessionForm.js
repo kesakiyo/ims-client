@@ -13,6 +13,7 @@ import Link from '../../elements/Link';
 import sessionActions from '../../redux/actions/session';
 import * as errorParser from '../../utils/errorParser';
 import notification from '../../services/notification';
+import Session from '../../models/Session';
 
 @reduxForm({
   form: 'sessionUpdate',
@@ -144,10 +145,12 @@ class SignInForm extends React.Component {
 
 SignInForm.propTypes = {
   onRedirect: PropTypes.func,
+  session: PropTypes.instanceOf(Session),
 }
 
 SignInForm.defaultProps = {
   onRedirect: () => {},
+  session: new Session(),
 }
 
 export default SignInForm;

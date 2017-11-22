@@ -9,7 +9,7 @@ import selectors from '../redux/selectors';
 const userIsAuthenticated = connectedReduxRedirect({
  redirectPath: '/signin',
  allowRedirectBack: false,
- authenticatedSelector: state => selectors.user.getUser(state) !== null,
+ authenticatedSelector: state => selectors.user.getUser(state).isAuthenticated(),
  authenticatingSelector: state => selectors.loading.App(state),
  wrapperDisplayName: 'UserIsAuthenticated',
  redirectAction: routerActions.replace,

@@ -1,9 +1,10 @@
 /* Internal dependnecies */
 import AT from '../../constants/ActionTypes';
+import Board from '../../models/Board';
 
 const initState = {
   isFetching: false,
-  board: null,
+  board: new Board(),
 };
 
 export default (state = initState, action) => {
@@ -19,7 +20,7 @@ export default (state = initState, action) => {
       return {
         ...state,
         isFetching: false,
-        board: action.payload.interview,
+        board: new Board(action.payload.interview),
       }
 
     case AT.REQUEST_JOIN_BOARD_ERROR:

@@ -42,28 +42,25 @@ class Questions extends React.Component {
 
   @autobind
   renderQuestion(question, index) {
-    switch (question.type) {
-      case QuestionTypes.FILE:
-        return (
-          <FileUploadForm
-            disabled={this.props.session.published}
-            index={index}
-            key={question.id}
-            question={question} />
-        )
-
-      case QuestionTypes.TEXT:
-        return (
-          <QuestionForm
-            disabled={this.props.session.published}
-            autoFocus={index === 0}
-            index={index}
-            key={question.id}
-            form={`question-${question.id}`}
-            question={question} />
-        )
-
-      case QuestionTypes.RADIO:
+    if (question.isFile()) {
+      return (
+        <FileUploadForm
+          disabled={this.props.session.published}
+          index={index}
+          key={question.id}
+          question={question} />
+      )
+    } else if (question.isText()) {
+      return (
+        <QuestionForm
+          disabled={this.props.session.published}
+          autoFocus={index === 0}
+          index={index}
+          key={question.id}
+          form={`question-${question.id}`}
+          question={question} />
+      )
+    } else if (question.isRadio()) {
       return (
         <RadioForm
           disabled={this.props.session.published}
@@ -71,10 +68,8 @@ class Questions extends React.Component {
           key={question.id}
           question={question} />
       )
-
-      default:
-        return null;
     }
+    return null;
   }
 
   render() {

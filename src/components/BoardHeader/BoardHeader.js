@@ -1,9 +1,11 @@
 /* External dependencies */
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 /* Internal dependencies */
 import styles from './styles.scss';
+import Board from '../../models/Board';
 
 class BoardHeader extends React.Component {
 
@@ -46,11 +48,11 @@ class BoardHeader extends React.Component {
 }
 
 BoardHeader.propTypes = {
-
+  borad: PropTypes.instanceOf(Board),
 }
 
 BoardHeader.defaultProps = {
-
+  board: new Board(),
 }
 
 export default BoardHeader;
