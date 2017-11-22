@@ -1,9 +1,10 @@
 /* Internal dependnecies */
 import AT from '../../constants/ActionTypes';
+import User from '../../models/User';
 
 const initState = {
   isFetching: false,
-  user: null,
+  user: new User(),
 };
 
 export default (state = initState, action) => {
@@ -17,13 +18,9 @@ export default (state = initState, action) => {
 
     case AT.REQUEST_SIGN_IN_SUCCESS:
     case AT.REQUEST_GET_ME_SUCCESS:
-      window.CHPlugin.checkIn({
-        id: action.payload.user.id,
-        name: action.payload.user.email,
-      });
       return {
         ...state,
-        user: action.payload.user,
+        user: new User(action.payload.user),
         isFetching: false,
       }
 
@@ -34,11 +31,10 @@ export default (state = initState, action) => {
       }
 
     case AT.REQUEST_SIGN_OUT_SUCCESS:
-    window.CHPlugin.checkOut();
-    return {
-      ...state,
-      user: null,
-    }
+      return {
+        ...state,
+        user: new User(),
+      }
 
     default:
       return state

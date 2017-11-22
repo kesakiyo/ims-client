@@ -15,6 +15,7 @@ import Link from '../../elements/Link';
 import questionActions from '../../redux/actions/question';
 import * as errorParser from '../../utils/errorParser';
 import notification from '../../services/notification';
+import Question from '../../models/Question';
 
 @connect()
 class FileUploadForm extends React.Component {
@@ -61,7 +62,7 @@ class FileUploadForm extends React.Component {
 
   renderDropzone() {
     const handleDrop = (() => {
-      if (this.props.question.answer.id) {
+      if (this.props.question.hasAnswer()) {
         return (files) => {
           this.setState({ submitting: true });
           this.handleUploadFile(this.props.question.answer.id, files);
@@ -83,14 +84,14 @@ class FileUploadForm extends React.Component {
         {this.state.submitting ? <div className={styles.spinner} /> : null}
         {
           (() => {
-            if (this.props.question.answer.file && this.props.question.answer.file.name) {
+            if (this.props.question.answer.hasFile()) {
               return (
                 <div className={styles.file}>
                   <div className={styles.name}>
                     {`${this.props.question.answer.file.name}이 올라가 있습니다.`}
                   </div>
                   <div className={styles.verbose}>
-                    파일을 수정하려면 클랙해주세요.
+                    파일을 수정하려면 클릭해주세요.
                   </div>
                 </div>
               )
@@ -125,11 +126,13 @@ class FileUploadForm extends React.Component {
 FileUploadForm.propTypes = {
   index: PropTypes.number,
   disabled: PropTypes.bool,
+  question: PropTypes.instanceOf(Question),
 }
 
 FileUploadForm.defaultProps = {
   index: 0,
   disabled: false,
+  question: new Question(),
 }
 
 export default FileUploadForm;

@@ -11,6 +11,7 @@ import Radio from '../../elements/Radio';
 import questionActions from '../../redux/actions/question';
 import * as errorParser from '../../utils/errorParser';
 import notification from '../../services/notification';
+import Question from '../../models/Question';
 
 @connect()
 class RadioForm extends React.Component {
@@ -18,7 +19,7 @@ class RadioForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: (selectn('question.answer.values', props) || []).pop(),
+      selected: props.question.answer.getFirstValue(),
     }
   }
 
@@ -77,11 +78,13 @@ class RadioForm extends React.Component {
 RadioForm.propTypes = {
   index: PropTypes.number,
   disabled: PropTypes.bool,
+  question: PropTypes.instanceOf(Question),
 }
 
 RadioForm.defaultProps = {
   index: 0,
   disabled: false,
+  question: new Question(),
 }
 
 export default RadioForm;

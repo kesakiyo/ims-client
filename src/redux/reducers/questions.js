@@ -1,9 +1,13 @@
+/* External dependencies */
+import Immutable from 'immutable';
+
 /* Internal dependnecies */
 import AT from '../../constants/ActionTypes';
+import Question from '../../models/Question';
 
 const initState = {
   isFetching: false,
-  questions: null,
+  questions: Immutable.List(),
 };
 
 export default (state = initState, action) => {
@@ -19,7 +23,7 @@ export default (state = initState, action) => {
       return {
         ...state,
         isFetching: false,
-        questions: action.payload.questions,
+        questions: Immutable.List(action.payload.questions.map(question => new Question(question))),
       }
 
     case AT.REQUEST_GET_QUESTIONS_ERROR:

@@ -14,6 +14,7 @@ import Link from '../../elements/Link';
 import questionActions from '../../redux/actions/question';
 import * as errorParser from '../../utils/errorParser';
 import notification from '../../services/notification';
+import Question from '../../models/Question';
 
 @reduxForm()
 @connect((state, ownProps) => ({
@@ -121,12 +122,14 @@ QuestionForm.propTypes = {
   autoFocus: PropTypes.bool,
   index: PropTypes.number,
   disabled: PropTypes.bool,
+  question: PropTypes.instanceOf(Question),
 }
 
 QuestionForm.defaultProps = {
   autoFocus: false,
   index: 0,
   disabled: false,
+  question: new Question(),
 }
 
 export default QuestionForm;

@@ -13,7 +13,6 @@ const mapStateToProps = (state) => ({
   user: userSelector.getUser(state),
 })
 
-
 @connect(mapStateToProps)
 class Boards extends React.Component {
 

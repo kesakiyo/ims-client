@@ -8,6 +8,7 @@ import { combineEpics, createEpicMiddleware } from 'redux-observable'
 
 /* Internal dependencies */
 import actionLifeCycle from '../redux/middlewares/actionLifeCycle';
+import sideEffect from '../redux/middlewares/sideEffect';
 import reducers from '../redux/reducers'
 import epics from '../redux/epics'
 
@@ -23,6 +24,7 @@ class Redux {
       applyMiddleware(
         createEpicMiddleware(combineEpics(epics)),
         actionLifeCycle,
+        sideEffect,
         routerMiddleware(this.hashHistory)
       )
     );
