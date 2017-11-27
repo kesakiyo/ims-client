@@ -4,6 +4,7 @@ import user from './user';
 import session from './session';
 import loading from './loading';
 import questions from './questions';
+import sessions from './sessions';
 
 export default {
   board,
@@ -11,4 +12,5 @@ export default {
   session,
   loading,
   questions,
+  sessions,
 }

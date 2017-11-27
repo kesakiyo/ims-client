@@ -23,6 +23,24 @@ const joinEpic = action$ => (
     )
 );
 
+const getSessionsEpic = action$ => (
+  action$.ofType(AT.REQUEST_GET_SESSIONS)
+    .switchMap(action =>
+      Rx.Observable.fromPromise(boardAPI.getSessions(action.payload.id))
+        .map(payload => ({
+          uuid: action.uuid,
+          type: AT.REQUEST_GET_SESSIONS_SUCCESS,
+          payload,
+        }))
+        .catch(payload => Rx.Observable.of({
+          uuid: action.uuid,
+          type: AT.REQUEST_GET_SESSIONS_ERROR,
+          payload,
+        }))
+    )
+);
+
 export default combineEpics(
   joinEpic,
+  getSessionsEpic
 );

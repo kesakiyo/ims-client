@@ -20,15 +20,15 @@ const SessionRecord = Immutable.Record({
 
 class Session extends SessionRecord {
   isMaster() {
-    return this.role === SessionTypes.MASTER;
+    return this.id && this.role === SessionTypes.MASTER;
   }
 
   isInterviewer() {
-    return this.role === SessionTypes.INTERVIEWER;
+    return this.id && (this.role === SessionTypes.INTERVIEWER || this.role === SessionTypes.MASTER);
   }
 
   isInterviewee() {
-    return this.role === SessionTypes.INTERVIEWEE;
+    return this.id && this.role === SessionTypes.INTERVIEWEE;
   }
 }
 
