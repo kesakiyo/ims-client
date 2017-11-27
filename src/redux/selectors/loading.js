@@ -25,9 +25,21 @@ const Publishing = createSelector(
   (...args) => args.reduce((prev, cur) => prev || cur, false)
 )
 
+const Statistic = createSelector(
+  state => state.sessions.isFetching,
+  (...args) => args.reduce((prev, cur) => prev || cur, false)
+)
+
+const Interviewers = createSelector(
+  state => state.sessions.isFetching,
+  (...args) => args.reduce((prev, cur) => prev || cur, false)
+)
+
 export default {
   App,
   Board,
   Questions,
   Publishing,
+  Statistic,
+  Interviewers,
 }

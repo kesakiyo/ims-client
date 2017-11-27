@@ -1,0 +1,46 @@
+@import '../../styles/colors.scss';
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 20px;
+
+  .body {
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .table {
+      min-width: 600px;
+      font-weight: 14px;
+      border: 1px solid $snow;
+      border-radius: 3px;
+      border-collapse: collapse;
+
+      > thead {
+        background-color: $snow;
+
+        > tr {
+          height: 30px;
+        }
+      }
+
+      > tbody {
+        > tr {
+          position: relative;
+          height: 35px;
+
+          > td {
+            text-align: center;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
