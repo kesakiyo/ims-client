@@ -8,7 +8,13 @@ const getInterviewees = createSelector(
   sessions => sessions.filter(session => session.isInterviewee())
 )
 
+const getInterviewers = createSelector(
+  state => state.sessions.sessions,
+  sessions => sessions.filter(session => session.isInterviewer())
+)
+
 export default {
   getSessions,
   getInterviewees,
+  getInterviewers,
 }

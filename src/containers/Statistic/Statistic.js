@@ -2,20 +2,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import selectn from 'selectn';
-import autobind from 'core-decorators/lib/autobind';
-import moment from 'moment';
 
 /* Internal dependencies */
 import styles from './styles.scss';
 import boardActions from '../../redux/actions/board';
 import selectors from '../../redux/selectors';
 import withPreloader from '../../decorators/withPreloader';
-import Button from '../../elements/Button';
-import Modal from '../../elements/Modal';
-import SessionReview from '../../components/SessionReview';
-import QuestionsReview from '../../components/QuestionsReview';
-import notification from '../../services/notification';
-import errorParser from '../../utils/errorParser';
 
 const initializer = (prevProps, props, dispatch) => {
   const prevId = selectn('params.id', prevProps);

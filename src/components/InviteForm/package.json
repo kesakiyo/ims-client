@@ -1,0 +1,6 @@
+{
+  "name": "InviteForm",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./InviteForm.js"
+}
