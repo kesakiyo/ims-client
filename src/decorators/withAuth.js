@@ -15,9 +15,35 @@ const userIsAuthenticated = connectedReduxRedirect({
  redirectAction: routerActions.replace,
 });
 
+const userIsInterviewer = connectedReduxRedirect({
+  redirectPath: '/signin',
+  allowRedirectBack: false,
+  authenticatedSelector: state => selectors.session.getSession(state).isInterviewer(),
+  authenticatingSelector: state => selectors.loading.Board(state),
+  wrapperDisplayName: 'UserIsInterviewer',
+  redirectAction: routerActions.replace,
+});
+
+const userIsInterviewee = connectedReduxRedirect({
+  redirectPath: '/signin',
+  allowRedirectBack: false,
+  authenticatedSelector: state => selectors.session.getSession(state).isInterviewee(),
+  authenticatingSelector: state => selectors.loading.Board(state),
+  wrapperDisplayName: 'UserIsInterviewee',
+  redirectAction: routerActions.replace,
+});
+
 const Authenticated = userIsAuthenticated(({ children, ...props }) => React.cloneElement(children, props));
+
+const isInterviewee = userIsInterviewee(({ children, ...props }) => React.cloneElement(children, props));
+
+const isInterviewer = userIsInterviewer(({ children, ...props }) => React.cloneElement(children, props));
 
 export default {
   userIsAuthenticated,
   Authenticated,
+  userIsInterviewer,
+  userIsInterviewee,
+  isInterviewee,
+  isInterviewer,
 }

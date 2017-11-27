@@ -13,6 +13,7 @@ import SignUp from './containers/SignUp';
 import Session from './containers/Session';
 import Questions from './containers/Questions';
 import Publishing from './containers/Publishing';
+import Statistic from './containers/Statistic';
 
 export default (
   <Router history={redux.getHistory()}>
@@ -23,10 +24,14 @@ export default (
       <Route component={withAuth.Authenticated}>
         <Route path="boards" component={Boards} />
         <Route path="boards/:id" component={Board}>
-          <IndexRedirect to="session" />
-          <Route path="session" component={Session} />
-          <Route path="questions" component={Questions} />
-          <Route path="publishing" component={Publishing} />
+          <Route component={withAuth.isInterviewee}>
+            <Route path="session" component={Session} />
+            <Route path="questions" component={Questions} />
+            <Route path="publishing" component={Publishing} />
+          </Route>
+          <Route component={withAuth.isInterviewer}>
+            <Route path="statistic" component={Statistic} />
+          </Route>
         </Route>
       </Route>
     </Route>
