@@ -44,7 +44,14 @@ class SignInForm extends React.Component {
           {meta.error}
         </Input>
         <div className={styles.description}>
-          지원 결과 및 공지사항을 받을 이메일 주소입니다.
+          {
+            (() => {
+              if (this.props.session.isInterviewee()) {
+                return '지원 결과 및 공지사항을 받을 이메일 주소입니다.';
+              }
+              return '이메일 주소입니다.';
+            })()
+          }
         </div>
       </div>
     );
@@ -66,7 +73,14 @@ class SignInForm extends React.Component {
           {meta.error}
         </Input>
         <div className={styles.description}>
-          지원자의 이름입니다.
+          {
+            (() => {
+              if (this.props.session.isInterviewee()) {
+                return '지원자의 이름입니다.';
+              }
+              return '이름입니다.';
+            })()
+          }
         </div>
       </div>
     );

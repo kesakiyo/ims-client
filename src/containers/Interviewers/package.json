@@ -1,0 +1,6 @@
+{
+  "name": "Interviewers",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Interviewers.js"
+}

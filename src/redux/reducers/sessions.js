@@ -33,6 +33,19 @@ export default (state = initState, action) => {
         isFetching: false,
       }
 
+    case AT.REQUEST_INVITE_BOARD_SUCCESS:
+      return {
+        ...state,
+        sessions: (() => {
+          const newSession = new Session(action.payload.session);
+          const idx = sessions.findIndex(session => session.id === newSession.id);
+          if (idx === -1) {
+            return sessions.push(newSession);
+          }
+          return sessions.set(idx, newSession);
+        })(),
+      }
+
     default:
       return state
   }

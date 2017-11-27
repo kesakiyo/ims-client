@@ -36,34 +36,26 @@ const mapStateToProps = (state) => ({
 @connect(mapStateToProps)
 class Board extends React.Component {
 
-  componentWillMount() {
-    if (!this.props.children) {
-      this.props.dispatch(replace(this.getRedicrectUrl()));
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.children) {
-      this.props.dispatch(replace(this.getRedicrectUrl(nextProps)));
-    }
-  }
-
-  getRedicrectUrl(props = this.props) {
-    const { board, session } = props;
-    if (session.isInterviewee()) {
-      return `/boards/${board.id}/session`
-    }
-    return `/boards/${board.id}/statistic`
-  }
-
   renderInterviewerMenu() {
     return (
       <div className={styles.sidebar}>
+        <Link
+          to={`/boards/${this.props.params.id}/session`}
+          className={styles.item}
+          activeClassName={styles.active}>
+          내 정보
+        </Link>
         <Link
           to={`/boards/${this.props.params.id}/statistic`}
           className={styles.item}
           activeClassName={styles.active}>
           보드 통계
+        </Link>
+        <Link
+          to={`/boards/${this.props.params.id}/interviewers`}
+          className={styles.item}
+          activeClassName={styles.active}>
+          면접관 정보
         </Link>
       </div>
     )
