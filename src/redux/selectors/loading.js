@@ -30,6 +30,17 @@ const Statistic = createSelector(
   (...args) => args.reduce((prev, cur) => prev || cur, false)
 )
 
+const Evaluation = createSelector(
+  state => state.sessions.isFetching,
+  (...args) => args.reduce((prev, cur) => prev || cur, false)
+)
+
+const EvaluationModal = createSelector(
+  state => state.questions.isFetching,
+  state => state.answers.isFetching,
+  (...args) => args.reduce((prev, cur) => prev || cur, false)
+)
+
 const Interviewers = createSelector(
   state => state.sessions.isFetching,
   (...args) => args.reduce((prev, cur) => prev || cur, false)
@@ -41,5 +52,7 @@ export default {
   Questions,
   Publishing,
   Statistic,
+  Evaluation,
+  EvaluationModal,
   Interviewers,
 }
