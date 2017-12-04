@@ -17,6 +17,7 @@ const AnswerRecord = Immutable.Record({
   updatedAt: 0,
 
   file: new File(),
+  scores: Immutable.List(),
 })
 
 class Answer extends AnswerRecord {

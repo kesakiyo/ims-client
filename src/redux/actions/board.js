@@ -7,4 +7,5 @@ export default {
   getSessions: actionCreator(AT.REQUEST_GET_SESSIONS),
   invite: actionCreatorWithPromise(AT.REQUEST_INVITE_BOARD),
   getAnswers: actionCreator(AT.REQUEST_GET_ANSWERS),
+  getScores: actionCreator(AT.REQUEST_GET_SCORES),
 }

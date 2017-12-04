@@ -7,10 +7,11 @@ import Answer from '../../models/Answer';
 const getFetchedQuestions = createSelector(
   state => state.questions.questions,
   state => state.answers.answers,
-  (questions, answers) => (
+  state => state.scores.scores,
+  (questions, answers, scores) => (
     questions.map(question => {
       const answer = answers.find(answer => answer.questionId === question.id, null, new Answer());
-      return question.set('answer', answer);
+      return question.set('answer', answer.set('scores', scores.filter(score => score.answerId === answer.id)));
     })
   )
 )

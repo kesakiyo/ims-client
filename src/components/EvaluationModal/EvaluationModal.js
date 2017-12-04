@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 import selectors from '../../redux/selectors';
 import boardActions from '../../redux/actions/board';
+import answerActions from '../../redux/actions/answer';
 import withPreloader from '../../decorators/withPreloader';
 import SessionReview from '../../components/SessionReview';
 import QuestionsReview from '../../components/QuestionsReview';
@@ -31,6 +32,7 @@ const initializer = (prevProps, props, dispatch) => {
       userId,
     }
     dispatch(boardActions.getAnswers(payload));
+    dispatch(boardActions.getScores(payload));
     return true;
   }
 
@@ -39,6 +41,7 @@ const initializer = (prevProps, props, dispatch) => {
 
 const mapStateToProps = (state) => ({
   questions: selectors.questions.getFetchedQuestions(state),
+  session: selectors.session.getSession(state),
 })
 
 @withPreloader({
@@ -54,13 +57,27 @@ class EvaluationModal extends React.Component {
     }
   }
 
+  @autobind
+  handleEvaluateAnswer(id, value) {
+    this.props.dispatch(answerActions.evaluate({ id, value }))
+      .promise
+      .then(() => {
+        notification.success('성공적으로 평가를 저장했습니다.');
+      }, () => {
+        notification.error('평가를 저장하는데 실패했습니다.');
+      })
+  }
+
   render() {
     return (
       <div className={styles.body}>
         <SessionReview session={this.props.interviewee} />
         <div className={styles.divider} />
         <div className={styles.content}>
-          <QuestionsReview questions={this.props.questions} />
+          <QuestionsReview
+            onEvaluateAnswer={this.handleEvaluateAnswer}
+            session={this.props.session}
+            questions={this.props.questions} />
         </div>
       </div>
     )
