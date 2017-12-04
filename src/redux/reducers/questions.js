@@ -14,12 +14,14 @@ export default (state = initState, action) => {
 
   switch (action.type) {
     case AT.REQUEST_GET_QUESTIONS:
+    case AT.REQUEST_GET_ANSWERS:
       return {
         ...state,
         isFetching: true,
       }
 
     case AT.REQUEST_GET_QUESTIONS_SUCCESS:
+    case AT.REQUEST_GET_ANSWERS_SUCCESS:
       return {
         ...state,
         isFetching: false,
@@ -27,6 +29,7 @@ export default (state = initState, action) => {
       }
 
     case AT.REQUEST_GET_QUESTIONS_ERROR:
+    case AT.REQUEST_GET_ANSWERS_ERROR:
       return {
         ...state,
         isFetching: false,

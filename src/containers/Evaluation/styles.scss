@@ -1,0 +1,54 @@
+@import '../../styles/colors.scss';
+
+.wrapper {
+  padding: 15px;
+
+  table {
+    min-width: 600px;
+    font-weight: 14px;
+    border: 1px solid $snow;
+    border-radius: 3px;
+    border-collapse: collapse;
+
+    > thead {
+      background-color: $snow;
+
+      > tr {
+        height: 30px;
+      }
+    }
+
+    > tbody {
+      > tr {
+        position: relative;
+        height: 35px;
+
+        &:hover {
+          background-color: $snow;
+          cursor: pointer;
+        }
+
+        > td {
+          text-align: center;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .modalBody {
+    position: relative;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    border-radius: 3px;
+    background-color: $white;
+  }
+}
