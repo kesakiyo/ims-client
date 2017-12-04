@@ -24,6 +24,22 @@
     .content {
       flex: 1 1 0;
 
+      .evaluate {
+        display: flex;
+        height: 50px;
+
+        .input {
+          width: 100px;
+          height: 40px;
+        }
+
+        .button {
+          margin-left: 15px;
+          padding: 0 15px;
+          height: 40px;
+        }
+      }
+
       .title {
         font-size: 14px;
         color: $dark;

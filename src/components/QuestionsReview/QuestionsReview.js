@@ -10,8 +10,28 @@ import autobind from 'core-decorators/lib/autobind';
 import styles from './styles.scss';
 import QuestionTypes from '../../constants/QuestionTypes';
 import Radio from '../../elements/Radio';
+import Button from '../../elements/Button';
+import Input from '../../elements/Input';
+import Session from '../../models/Session';
+import Score from '../../models/Score';
 
 class QuestionsReview extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {}
+  }
+
+  componentWillMount() {
+    if (this.props.session.isInterviewer()) {
+      const answeredQuestions = this.props.questions.filter(question => question.hasAnswer());
+      const scores = answeredQuestions.reduce((prev, question) => ({
+        ...prev,
+        [question.answer.id]: question.answer.scores.find(score => score.createdUserId === this.props.session.userId, null, new Score()).value || '0',
+      }), {});
+      this.setState(scores);
+    }
+  }
 
   renderTextAnswer(question) {
     const answer = (
@@ -73,6 +93,26 @@ class QuestionsReview extends React.Component {
     return null;
   }
 
+  renderEvluationForm(question) {
+    if (this.props.session.isInterviewer() && question.hasAnswer()) {
+      const handleChangeValue = (event) => this.setState({ [question.answer.id]: event.target.value.replace(/\D/g, '') })
+      const handleEvluateAnswer = (event) => this.props.onEvaluateAnswer(question.answer.id, this.state[question.answer.id])
+      return (
+        <div className={styles.evaluate}>
+          <Input
+            className={styles.input}
+            placeholder="숫자만 입력해주세요"
+            onChange={handleChangeValue}
+            value={this.state[question.answer.id]} />
+          <Button className={styles.button} onClick={handleEvluateAnswer}>
+            평가하기
+          </Button>
+        </div>
+      )
+    }
+    return null;
+  }
+
   @autobind
   renderQuestion(question, idx) {
     return (
@@ -85,6 +125,7 @@ class QuestionsReview extends React.Component {
             {question.title}
           </div>
           {this.renderAnswer(question)}
+          {this.renderEvluationForm(question)}
         </div>
       </div>
     )
@@ -109,11 +150,15 @@ class QuestionsReview extends React.Component {
 }
 
 QuestionsReview.propTypes = {
+  session: PropTypes.instanceOf(Session),
   questions: PropTypes.instanceOf(Immutable.List),
+  onEvaluateAnswer: PropTypes.func,
 }
 
 QuestionsReview.defaultProps = {
+  session: new Session(),
   questions: Immutable.List(),
+  onEvaluateAnswer: () => {},
 }
 
 export default QuestionsReview;
