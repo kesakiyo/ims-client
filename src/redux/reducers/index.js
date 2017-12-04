@@ -5,6 +5,7 @@ import session from './session';
 import questions from './questions';
 import answers from './answers';
 import sessions from './sessions';
+import scores from './scores';
 
 export default {
   user,
@@ -13,4 +14,5 @@ export default {
   questions,
   answers,
   sessions,
+  scores,
 }

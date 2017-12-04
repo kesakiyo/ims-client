@@ -19,7 +19,7 @@
 }
 
 %modal-default {
-  z-index: 10000000;
+  z-index: 1;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -40,7 +40,7 @@
 }
 
 .wrapper {
-  z-index: 10000000;
+  z-index: 1;
   display: flex;
   position: relative;
   width: 100%;
