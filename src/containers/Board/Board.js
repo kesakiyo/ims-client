@@ -52,6 +52,12 @@ class Board extends React.Component {
           보드 통계
         </Link>
         <Link
+          to={`/boards/${this.props.params.id}/evaluation`}
+          className={styles.item}
+          activeClassName={styles.active}>
+          지원자 관리
+        </Link>
+        <Link
           to={`/boards/${this.props.params.id}/interviewers`}
           className={styles.item}
           activeClassName={styles.active}>

@@ -14,6 +14,7 @@ import Session from './containers/Session';
 import Questions from './containers/Questions';
 import Publishing from './containers/Publishing';
 import Statistic from './containers/Statistic';
+import Evaluation from './containers/Evaluation';
 import Interviewers from './containers/Interviewers';
 
 export default (
@@ -33,6 +34,7 @@ export default (
           </Route>
           <Route component={withAuth.isInterviewer}>
             <Route path="statistic" component={Statistic} />
+            <Route path="evaluation" component={Evaluation} />
             <Route path="interviewers" component={Interviewers} />
           </Route>
         </Route>

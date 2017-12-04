@@ -10,17 +10,18 @@ import Session from '../../models/Session';
 class SessionReview extends React.Component {
 
   renderSessionRow(label, value) {
+    const notSetValue = !this.props.readOnly && !value;
     return (
       <div className={styles.row}>
         <div className={styles.label}>
           {label}
         </div>
         <div className={styles.content}>
-          <div className={classNames(styles.value, { [styles.error]: !value })}>
+          <div className={classNames(styles.value, { [styles.error]: notSetValue })}>
             {value}
           </div>
           <div className={styles.meta}>
-            {!value ? `${label}을(를) 빈 채로 제출할 수 없습니다.` : null}
+            {notSetValue ? `${label}을(를) 빈 채로 제출할 수 없습니다.` : null}
           </div>
         </div>
     </div>
@@ -49,10 +50,12 @@ class SessionReview extends React.Component {
 }
 
 SessionReview.propTypes = {
+  readOnly: PropTypes.bool,
   session: PropTypes.instanceOf(Session),
 }
 
 SessionReview.defaultProps = {
+  readOnly: false,
   session: new Session(),
 }
 
