@@ -33,6 +33,13 @@ class QuestionsReview extends React.Component {
     }
   }
 
+  handleFileClick(file) {
+    var parser = document.createElement('a');
+    parser.href = file.url;
+    const url = `${parser.protocol}//${parser.hostname}/${window.encodeURIComponent(parser.pathname.slice(1))}`;
+    window.open(url, '_blank');
+  }
+
   renderTextAnswer(question) {
     const answer = (
       <div key="text" className={styles.answer}>
@@ -51,7 +58,9 @@ class QuestionsReview extends React.Component {
 
   renderFileAnswer(question) {
     return (
-      <div className={styles.answer}>
+      <div
+        onClick={question.hasAnswer() ? () => this.handleFileClick(question.answer.file) : () => {}}
+        className={classNames(styles.answer, { [styles.file]: question.hasAnswer() })}>
       {
         (() => {
           const fileName = question.answer.getFileName();

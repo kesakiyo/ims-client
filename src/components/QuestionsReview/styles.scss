@@ -49,6 +49,7 @@
       .answer {
         margin-top: 5px;
         margin-bottom: 7px;
+        position: relative;
         max-height: 300px;
         padding: 15px 10px;
         border: 1px solid $silver;
@@ -59,6 +60,10 @@
 
         &:hover {
           cursor: not-allowed;
+        }
+
+        &.file {
+          cursor: pointer;
         }
       }
 
