@@ -13,6 +13,7 @@ import withPreloader from '../../decorators/withPreloader';
 import Modal from '../../elements/Modal';
 import EvaluationModal from '../../components/EvaluationModal';
 import Session from '../../models/Session';
+import Radio from '../../elements/Radio'
 
 const initializer = (prevProps, props, dispatch) => {
   const prevId = selectn('params.id', prevProps);
@@ -41,6 +42,7 @@ class Evaluation extends React.Component {
     super();
     this.state = {
       showModal: false,
+      showOnlyPublished: true,
       interviewee: new Session(),
     }
   }
@@ -63,6 +65,16 @@ class Evaluation extends React.Component {
   }
 
   @autobind
+  handleAllClick() {
+    this.setState({ showOnlyPublished: false })
+  }
+
+  @autobind
+  handlePublishedClick() {
+    this.setState({ showOnlyPublished: true })
+  }
+
+  @autobind
   renderTableRow(interviewee) {
     return (
       <tr key={interviewee.id} onClick={this.handleRowClick(interviewee)}>
@@ -76,6 +88,13 @@ class Evaluation extends React.Component {
   }
 
   renderTable() {
+    const interviewees = (() => {
+      if (this.state.showOnlyPublished) {
+        return this.props.interviewees.filter(interviewee => interviewee.published)
+      }
+      return this.props.interviewees
+    })();
+
     return (
       <table>
         <thead>
@@ -88,7 +107,7 @@ class Evaluation extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.interviewees.map(this.renderTableRow)}
+          {interviewees.map(this.renderTableRow)}
         </tbody>
       </table>
     )
@@ -110,9 +129,25 @@ class Evaluation extends React.Component {
     )
   }
 
+  renderHeader() {
+    return (
+      <div className={styles.header}>
+        <Radio
+          onClick={this.handleAllClick}
+          selected={!this.state.showOnlyPublished}
+          label="전체 보기" />
+        <Radio
+          onClick={this.handlePublishedClick}
+          selected={this.state.showOnlyPublished}
+          label="최종 제출만 보기" />
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className={styles.wrapper}>
+        {this.renderHeader()}
         {this.renderTable()}
         {this.renderEvaluationModal()}
       </div>
