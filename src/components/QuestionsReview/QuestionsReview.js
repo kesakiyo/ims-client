@@ -36,7 +36,10 @@ class QuestionsReview extends React.Component {
   handleFileClick(file) {
     var parser = document.createElement('a');
     parser.href = file.url;
-    const url = `${parser.protocol}//${parser.hostname}/${window.encodeURIComponent(parser.pathname.slice(1))}`;
+
+    const parts = parser.pathname.split(/([+])/g)
+    parts[parts.length - 2] = '%2B'
+    const url = `${parser.protocol}//${parser.hostname}${parts.join('')}`;
     window.open(url, '_blank');
   }
 
