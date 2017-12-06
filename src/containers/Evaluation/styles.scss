@@ -3,6 +3,11 @@
 .wrapper {
   padding: 15px;
 
+  .header {
+    margin-bottom: 10px;
+    display: flex;
+  }
+
   table {
     min-width: 600px;
     font-weight: 14px;
