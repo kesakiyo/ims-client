@@ -60,5 +60,6 @@ typings/
 # build file
 build
 !build/index.html
+!build/expired.html
 
 .DS_Store
