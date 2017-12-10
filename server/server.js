@@ -18,14 +18,7 @@ app.use(userAgent.express());
 const compression = require('compression');
 
 app.use(compression());
-app.use('/', (req, res, next) => {
-  const current = +moment();
-  if (current > 1512831599000) {
-    res.sendFile(path.join(__dirname, '..', 'build', 'expired.html'));
-  } else {
-    express.static(path.join(__dirname, '..', 'build'))(req, res, next);
-  }
-});
+app.use('/', express.static(path.join(__dirname, '..', 'build')));
 
 app.get('*', (req, res) => {
   res.redirect('/');
