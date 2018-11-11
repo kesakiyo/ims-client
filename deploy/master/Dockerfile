@@ -6,7 +6,10 @@ ENV NODE_ENV production
 
 WORKDIR /usr/src/master/ims-client
 
-RUN git checkout master && \
+RUN git config --global user.email "kesakiyo@naver.com" && \
+    git config --global user.name "Minho Cheon" && \
+    git checkout master && \
+    git stash && \
     git pull && \
     npm install && \
     npm run build

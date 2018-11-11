@@ -20,7 +20,7 @@ const compression = require('compression');
 app.use(compression());
 app.use('/', (req, res, next) => {
   const current = +moment();
-  if (current < 1526223600000) {
+  if (current < 1546473600000) {
     res.sendFile(path.join(__dirname, '..', 'build', 'expired.html'));
   } else {
     express.static(path.join(__dirname, '..', 'build'))(req, res, next);
